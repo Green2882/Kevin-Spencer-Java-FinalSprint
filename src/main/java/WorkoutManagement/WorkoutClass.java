@@ -1,6 +1,7 @@
-package WorkoutManagement;
+package main.java.WorkoutManagement;
 
 public class WorkoutClass {
+
     private String wcId; // WorkoutClass ID
     private String wcType; // WorkoutClass Type
     private String wcDesc; // WorkoutClass Description
