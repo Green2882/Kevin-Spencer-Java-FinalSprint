@@ -9,7 +9,6 @@ public class User {
     private String email;
     private String phone;
     private String role;
-    private boolean isAdmin;
 
     // Constructors
     public User(String userName, String password, String email, String phone, String role, int userId) {
