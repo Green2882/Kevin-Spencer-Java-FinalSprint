@@ -8,14 +8,16 @@ public class User {
     private String password;
     private String email;
     private String phone;
+    private String address;
     private String role;
 
     // Constructors
-    public User(String userName, String password, String email, String phone, String role, int userId) {
+    public User(String userName, String password, String email, String phone, String address, String role, int userId) {
         this.userName = userName;
         this.password = password;
         this.email = email;
         this.phone = phone;
+        this.address = address;
         this.role = role;
     }
 
@@ -61,6 +63,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getRole() {

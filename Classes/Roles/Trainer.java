@@ -6,8 +6,8 @@ public class Trainer extends Users.User {
     private String trainerId;
 
     // Constructor
-    public Trainer(String userName, String password, String email, String phone, String role, int userId, String trainerId) {
-        super(userName, password, email, phone, role, userId);
+    public Trainer(String userName, String password, String email, String phone, String address, String role, int userId, String trainerId) {
+        super(userName, password, email, phone, address, role, userId);
         this.trainerId = trainerId;
     }
 
