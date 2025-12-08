@@ -1,4 +1,4 @@
-package Classes.Roles;
+package Roles;
 
 public class Member {
 

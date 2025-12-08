@@ -1,4 +1,4 @@
-package Classes.DatabaseConnection;
+package DatabaseConnection;
 
 public class DatabaseConnection {
 
