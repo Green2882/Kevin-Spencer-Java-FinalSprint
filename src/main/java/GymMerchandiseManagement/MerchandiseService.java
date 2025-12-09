@@ -32,16 +32,30 @@ public class MerchandiseService {
 
     // Print stock report for admins
     public void printStockReport() {
-        System.out.println("=== STOCK REPORT ===");
-        System.out.println("Feature not yet implemented - requires getAllItems methods in DAOs");
-        Logger.info("Stock report requested");
+        try {
+            System.out.println("=== COMPLETE STOCK REPORT ===");
+            drinksDAO.getAllDrinkItems();
+            foodsDAO.getAllFoodItems();
+            workoutGearDAO.getAllGearItems();
+            Logger.info("Stock report generated");
+        } catch (Exception e) {
+            Logger.error("Error generating stock report: " + e.getMessage());
+            System.out.println("Error generating stock report.");
+        }
     }
 
     // View products (for members and trainers)
     public void viewAllProducts() {
-        System.out.println("=== AVAILABLE PRODUCTS ===");
-        System.out.println("Feature not yet implemented - requires getAllItems methods in DAOs");
-        Logger.info("Product listing requested");
+        try {
+            System.out.println("=== AVAILABLE PRODUCTS ===");
+            drinksDAO.getAllDrinkItems();
+            foodsDAO.getAllFoodItems();
+            workoutGearDAO.getAllGearItems();
+            Logger.info("Product listing displayed");
+        } catch (Exception e) {
+            Logger.error("Error displaying products: " + e.getMessage());
+            System.out.println("Error displaying products.");
+        }
     }
 
 }

@@ -33,8 +33,12 @@ public class FoodsDAO {
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
+            System.out.println("Food Inventory");
             while (resultSet.next()) {
-                System.out.println("Name: " + resultSet.getString("name") + " $" + resultSet.getDouble("cost"));
+                System.out.println("ID: " + resultSet.getInt("merchId") + 
+                    " | Name: " + resultSet.getString("name") + 
+                    " | Cost: $" + resultSet.getDouble("cost") + 
+                    " | Quantity: " + resultSet.getInt("quantity"));
             }
         }
     }
