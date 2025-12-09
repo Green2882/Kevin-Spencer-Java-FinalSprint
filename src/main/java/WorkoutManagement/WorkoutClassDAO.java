@@ -6,9 +6,9 @@ import Roles.Trainer;
 
 public class WorkoutClassDAO {
 
-    public void saveNewMembershipToDB(WorkoutClass workoutclass, Trainer trainer) {
+    public void saveNewWorkoutClassToDB(WorkoutClass workoutclass, Trainer trainer) {
 
-        String sql = "INSERT INTO membership (wcId, wcType, wcDesc, trainerId) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO workoutclass (wcId, wcType, wcDesc, trainerId) VALUES (?, ?, ?, ?)";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
