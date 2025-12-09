@@ -8,7 +8,7 @@ public class WorkoutGearDAO {
 
     public void saveNewWorkoutGearToDB(WorkoutGear workoutGear) {
 
-        String sql = "INSERT INTO workoutGear (merchId, name, merchdesc, cost, quantity) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO workoutGear (merchId, name, merchDesc, cost, quantity) VALUES (?, ?, ?, ?, ?)";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
@@ -29,12 +29,16 @@ public class WorkoutGearDAO {
     }
 
     public void getAllGearItems() throws SQLException {
-        String sql = "SELECT * FROM workoutgear";
+        String sql = "SELECT * FROM workoutGear";
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
+            System.out.println("Workout Gear Inventory");
             while (resultSet.next()) {
-                System.out.println("Name: " + resultSet.getString("name") + " $" + resultSet.getDouble("cost"));
+                System.out.println("ID: " + resultSet.getInt("merchId") + 
+                    " | Name: " + resultSet.getString("name") + 
+                    " | Cost: $" + resultSet.getDouble("cost") + 
+                    " | Quantity: " + resultSet.getInt("quantity"));
             }
         }
     }

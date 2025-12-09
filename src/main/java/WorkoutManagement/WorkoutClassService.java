@@ -29,16 +29,18 @@ public class WorkoutClassService {
         }
     }
 
-    // Trainers: Update workout class (placeholder)
+    // Trainers: Update workout class
     public void updateWorkoutClass(WorkoutClass workoutClass) {
-        System.out.println("Update workout class feature not yet implemented");
-        Logger.info("Workout class update requested for: " + workoutClass.getWcId());
+        System.out.println("Updating workout class: " + workoutClass.getWcId());
+        workoutDao.updateWorkoutClass(workoutClass);
+        Logger.info("Workout class update completed for: " + workoutClass.getWcId());
     }
 
-    // Trainers: Delete workout class (placeholder)
+    // Trainers: Delete workout class
     public void deleteWorkoutClass(String wcId) {
-        System.out.println("Delete workout class feature not yet implemented");
-        Logger.info("Workout class deletion requested for: " + wcId);
+        System.out.println("Deleting workout class: " + wcId);
+        workoutDao.deleteWorkoutClass(wcId);
+        Logger.info("Workout class deletion completed for: " + wcId);
     }
 
 }

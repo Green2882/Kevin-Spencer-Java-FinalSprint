@@ -17,18 +17,18 @@ public class MembershipService {
         System.out.println("Membership saved to system!");
     }
 
-    // Admins: View total revenue (placeholder)
+    // Admins: View total revenue
     public void viewTotalRevenue() {
         System.out.println("=== MEMBERSHIP REVENUE REPORT ===");
-        System.out.println("Feature not yet implemented - requires revenue calculation in DAO");
-        Logger.info("Revenue report requested");
+        double totalRevenue = membershipDao.getTotalRevenue();
+        System.out.println("Total Revenue: $" + String.format("%.2f", totalRevenue));
+        Logger.info("Revenue report displayed: $" + totalRevenue);
     }
 
-    // Admins: Track membership statistics (placeholder)
+    // Admins: Track membership statistics
     public void viewMembershipStatistics() {
-        System.out.println("=== MEMBERSHIP STATISTICS ===");
-        System.out.println("Feature not yet implemented - requires statistics methods in DAO");
-        Logger.info("Membership statistics requested");
+        membershipDao.getMembershipStatistics();
+        Logger.info("Membership statistics displayed");
     }
 
 }
