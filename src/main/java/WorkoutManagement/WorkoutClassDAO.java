@@ -1,6 +1,7 @@
 package WorkoutManagement;
 
 import java.sql.SQLException;
+
 import DatabaseConnection.DatabaseConnection;
 import Logger.Logger;
 import Roles.Trainer;
@@ -16,7 +17,7 @@ public class WorkoutClassDAO {
             preparedStatement.setString(1, workoutclass.getWcId());
             preparedStatement.setString(2, workoutclass.getWcType());
             preparedStatement.setString(3, workoutclass.getWcDesc());
-            preparedStatement.setString(4, trainer.getTrainerId());
+            preparedStatement.setInt(4, trainer.getTrainerId());
 
             Logger.info("Workout Class saved to database");
 
@@ -28,7 +29,7 @@ public class WorkoutClassDAO {
     }
 
     public void printAllWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
-        String sql= "SELECT * FROM workoutclass";
+        String sql = "SELECT * FROM workoutclass";
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
