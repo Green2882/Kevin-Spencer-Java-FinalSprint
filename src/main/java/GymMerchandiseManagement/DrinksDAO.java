@@ -1,5 +1,6 @@
 package GymMerchandiseManagement;
 
+import java.sql.SQLException;
 import DatabaseConnection.DatabaseConnection;
 import Logger.Logger;
 
@@ -7,15 +8,16 @@ public class DrinksDAO {
 
     public void saveNewDrinkToDB(Drinks drinks) {
 
-        String sql = "INSERT INTO drinks (merchId, name, desc, cost, quantity) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO drinks (merchId, name, merchdesc, cost, quantity) VALUES (?, ?, ?, ?, ?)";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, drinks.getMerchId());
-            preparedStatement.setString(2, drinks.getName());
-            preparedStatement.setString(3, drinks.getDesc());
-            preparedStatement.setDouble(4, drinks.getCost());
-            preparedStatement.setInt(5, drinks.getQuantity());
+            preparedStatement.setString(2, drinks.getDrinkName());
+            preparedStatement.setString(3, drinks.getDrinkDesc());
+            preparedStatement.setDouble(4, drinks.getDrinkCost());
+            preparedStatement.setInt(5, drinks.getDrinkQuantity());
+            preparedStatement.executeUpdate();
 
             Logger.info("Drinks saved to database");
 
@@ -23,6 +25,17 @@ public class DrinksDAO {
             e.printStackTrace();
             String message = "Error saving Drinks to database";
             Logger.error(message + e.getMessage());
+        }
+    }
+
+    public void getAllDrinkItems() throws SQLException {
+        String sql = "SELECT * FROM drinks";
+        try (var connection = DatabaseConnection.getCon()) {
+            var preparedStatement = connection.prepareStatement(sql);
+            var resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println("Name: " + resultSet.getString("name") + " $" + resultSet.getDouble("cost"));
+            }
         }
     }
 }

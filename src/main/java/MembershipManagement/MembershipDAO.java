@@ -17,6 +17,7 @@ public class MembershipDAO {
             preparedStatement.setString(3, membership.getMsDesc());
             preparedStatement.setDouble(4, membership.getMsCost());
             preparedStatement.setInt(5, user.getUserId());
+            preparedStatement.executeUpdate();
 
             Logger.info("Membership saved to database");
 

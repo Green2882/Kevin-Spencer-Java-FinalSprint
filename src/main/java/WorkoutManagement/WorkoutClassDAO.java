@@ -18,6 +18,7 @@ public class WorkoutClassDAO {
             preparedStatement.setString(2, workoutclass.getWcType());
             preparedStatement.setString(3, workoutclass.getWcDesc());
             preparedStatement.setInt(4, trainer.getTrainerId());
+            preparedStatement.executeUpdate();
 
             Logger.info("Workout Class saved to database");
 
@@ -34,7 +35,7 @@ public class WorkoutClassDAO {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println(" Class ID: " + resultSet.getString("wcId") + " Class Description: " + resultSet.getString("wcDesc"));
+                System.out.println("Class ID: " + resultSet.getString("wcId") + " Class Description: " + resultSet.getString("wcDesc"));
             }
         }
     }

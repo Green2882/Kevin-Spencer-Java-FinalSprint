@@ -15,6 +15,9 @@ public class Food {
         this.quantity = quantity;
     }
 
+    public Food() {
+    }
+
     public int getMerchId() { 
         return merchId; 
     }
@@ -23,35 +26,35 @@ public class Food {
         this.merchId = merchId; 
     }
 
-    public String getName() { 
+    public String getFoodName() { 
         return name; 
     }
 
-    public void setName(String name) { 
+    public void setFoodName(String name) { 
         this.name = name; 
     }
 
-    public String getDesc() { 
+    public String getFoodDesc() { 
         return desc; 
     }
 
-    public void setDesc(String desc) { 
+    public void setFoodDesc(String desc) { 
         this.desc = desc; 
     }
 
-    public double getCost() { 
+    public double getFoodCost() { 
         return cost; 
     }
 
-    public void setCost(double cost) { 
+    public void setFoodCost(double cost) { 
         this.cost = cost; 
     }
 
-    public int getQuantity() { 
+    public int getFoodQuantity() { 
         return quantity; 
     }
 
-    public void setQuantity(int quantity) { 
+    public void setFoodQuantity(int quantity) { 
         this.quantity = quantity; 
     }
 
