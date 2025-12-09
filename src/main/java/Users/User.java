@@ -21,6 +21,16 @@ public class User {
         this.role = role;
     }
 
+    // Constructors
+    public User(String userName, String password, String email, String phone, String address, String role) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.role = role;
+    }
+
     public User() {
     }
 
