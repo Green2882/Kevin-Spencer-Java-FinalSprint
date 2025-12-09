@@ -3,24 +3,24 @@ package Roles;
 public class Trainer extends Users.User {
 
     // Instnace variables
-    private String trainerId;
+    private int trainerId;
 
     // Constructor
-    public Trainer(String userName, String password, String email, String phone, String address, String role, int userId, String trainerId) {
+    public Trainer(String userName, String password, String email, String phone, String address, String role, int userId, int trainerId) {
         super(userName, password, email, phone, address, role, userId);
-        this.trainerId = trainerId;
+        this.trainerId = userId;
     }
 
     public Trainer() {
     }
 
     // Getters and Setters
-    public String getTrainerId() {
+    public int getTrainerId() {
         return trainerId;
     }
 
-    public void setTrainerId(String trainerId) {
-        this.trainerId = trainerId;
+    public void setTrainerId(int userId) {
+        this.trainerId = userId;
     }
 
     // toString method  

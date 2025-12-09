@@ -7,7 +7,7 @@ public class WorkoutGearDAO {
 
     public void saveNewWorkoutGearToDB(WorkoutGear workoutGear) {
 
-        String sql = "INSERT INTO workoutGear (merchId, name, desc, cost, quantity) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO workoutGear (merchId, name, merchDesc, cost, quantity) VALUES (?, ?, ?, ?, ?)";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
