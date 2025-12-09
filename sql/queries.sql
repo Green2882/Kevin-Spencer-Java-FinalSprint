@@ -1,0 +1,34 @@
+CREATE TABLE users (
+userId SERIAL PRIMARY KEY,
+userName VARCHAR(50) UNIQUE NOT NULL,
+password TEXT NOT NULL,
+email VARCHAR(100),
+phone VARCHAR(20),
+address VARCHAR(200),
+role VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE membership (
+msId SERIAL PRIMARY KEY,
+msType TEXT NOT NULL,
+msDesc TEXT,
+msCost DOUBLE PRECISION NOT NULL,
+userId INT,
+FOREIGN KEY(userId) REFERENCES users(userId) ON DELETE CASCADE
+);
+
+CREATE TABLE workoutclass(
+wcID SERIAL PRIMARY KEY,
+wcType TEXT NOT NULL,
+wcDesc TEXT,
+trainerId Int,
+FOREIGN KEY(trainerId) REFERENCES users(userId)
+);
+
+CREATE TABLE workoutGear(
+merchId SERIAL PRIMARY KEY,
+name TEXT NOT NULL,
+merchDesc TEXT,
+cost DOUBLE PRECISION NOT NULL,
+quantity INT
+);

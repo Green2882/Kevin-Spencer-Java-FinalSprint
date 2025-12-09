@@ -1,6 +1,7 @@
 package WorkoutManagement;
 
 import java.sql.SQLException;
+
 import DatabaseConnection.DatabaseConnection;
 import Logger.Logger;
 import Roles.Trainer;
@@ -16,7 +17,7 @@ public class WorkoutClassDAO {
             preparedStatement.setString(1, workoutclass.getWcId());
             preparedStatement.setString(2, workoutclass.getWcType());
             preparedStatement.setString(3, workoutclass.getWcDesc());
-            preparedStatement.setString(4, trainer.getTrainerId());
+            preparedStatement.setInt(4, trainer.getTrainerId());
             preparedStatement.executeUpdate();
 
             Logger.info("Workout Class saved to database");
