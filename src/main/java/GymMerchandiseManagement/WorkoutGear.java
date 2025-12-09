@@ -15,6 +15,9 @@ public class WorkoutGear {
         this.quantity = quantity;
     }
 
+    public WorkoutGear() {
+    }
+
     public int getMerchId() { 
         return merchId; 
     }
@@ -23,35 +26,35 @@ public class WorkoutGear {
         this.merchId = merchId; 
     }
 
-    public String getName() { 
+    public String getGearName() { 
         return name; 
     }
 
-    public void setName(String name) { 
+    public void setGearName(String name) { 
         this.name = name; 
     }
 
-    public String getDesc() { 
+    public String getGearDesc() { 
         return desc; 
     }
 
-    public void setDesc(String desc) { 
+    public void setGearDesc(String desc) { 
         this.desc = desc; 
     }
 
-    public double getCost() { 
+    public double getGearCost() { 
         return cost; 
     }
 
-    public void setCost(double cost) { 
+    public void setGearCost(double cost) { 
         this.cost = cost; 
     }
 
-    public int getQuantity() { 
+    public int getGearQuantity() { 
         return quantity; 
     }
 
-    public void setQuantity(int quantity) { 
+    public void setGearQuantity(int quantity) { 
         this.quantity = quantity; 
     }
 
