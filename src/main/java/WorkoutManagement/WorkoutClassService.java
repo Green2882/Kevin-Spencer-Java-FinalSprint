@@ -20,7 +20,7 @@ public class WorkoutClassService {
     // Members: View all workout classes
     public void viewAllWorkoutClasses() {
         try {
-            System.out.println("=== AVAILABLE WORKOUT CLASSES ===");
+            System.out.println("Available Workout Classes");
             workoutDao.printAllWorkoutClasses(null);
             Logger.info("Workout classes viewed");
         } catch (SQLException e) {

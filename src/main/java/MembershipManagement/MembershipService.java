@@ -19,7 +19,7 @@ public class MembershipService {
 
     // Admins: View total revenue
     public void viewTotalRevenue() {
-        System.out.println("=== MEMBERSHIP REVENUE REPORT ===");
+        System.out.println("Membership Revenue Report");
         double totalRevenue = membershipDao.getTotalRevenue();
         System.out.println("Total Revenue: $" + String.format("%.2f", totalRevenue));
         Logger.info("Revenue report displayed: $" + totalRevenue);

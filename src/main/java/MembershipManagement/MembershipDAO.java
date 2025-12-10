@@ -59,7 +59,7 @@ public class MembershipDAO {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
             
-            System.out.println("=== MEMBERSHIP STATISTICS ===");
+            System.out.println("Membership Statistics");
             while (resultSet.next()) {
                 System.out.println("Type: " + resultSet.getString("msType") + 
                     " | Count: " + resultSet.getInt("count") + 
