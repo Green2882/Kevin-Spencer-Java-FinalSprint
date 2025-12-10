@@ -29,6 +29,18 @@ public class WorkoutClassService {
         }
     }
 
+    // Members & Trainers: View assigned classes
+    public void viewAllAssignedWorkoutClasses() {
+        try {
+            System.out.println("Available Workout Classes");
+            workoutDao.printAllAssignedWorkoutClasses(null);
+            Logger.info("Current workout classes viewed");
+        } catch (SQLException e) {
+            Logger.error("Error viewing workout classes: " + e.getMessage());
+            System.out.println("Error retrieving workout classes.");
+        }
+    }
+
     // Trainers: Update workout class
     public void updateWorkoutClass(WorkoutClass workoutClass) {
         System.out.println("Updating workout class: " + workoutClass.getWcId());
