@@ -5,19 +5,19 @@ public class WorkoutClass {
     private String wcId; // WorkoutClass ID
     private String wcType; // WorkoutClass Type
     private String wcDesc; // WorkoutClass Description
-    private String trainerId; //Trainer ID
+    private int trainerId; //Trainer ID
 
-    public WorkoutClass(String wcId, String wcType, String wcDesc, String trainerId) {
+    public WorkoutClass(String wcId, String wcType, String wcDesc, int trainerId) {
         this.wcId = wcId;
         this.wcType = wcType;
         this.wcDesc = wcDesc;
         this.trainerId = trainerId;
     }
 
-    public WorkoutClass(String wcType, String wcDesc, String trainerId) {
+    public WorkoutClass(String wcId, String wcType, String wcDesc) {
+        this.wcId = wcId;
         this.wcType = wcType;
         this.wcDesc = wcDesc;
-        this.trainerId = trainerId;
     }
 
     public WorkoutClass() {
@@ -47,11 +47,11 @@ public class WorkoutClass {
         this.wcDesc = wcDesc;
     }
 
-    public String getTrainerId() {
+    public int getTrainerId() {
         return trainerId;
     }
 
-    public void setTrainerId(String trainerId) {
+    public void setTrainerId(int trainerId) {
         this.trainerId = trainerId;
     }
 

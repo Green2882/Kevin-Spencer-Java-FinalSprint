@@ -1,9 +1,13 @@
 package Users;
 
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import DatabaseConnection.DatabaseConnection;
 import Logger.Logger;
+import Roles.Admin;
+import Roles.Member;
+import Roles.Trainer;
 
 public class UserDAO {
 
@@ -12,7 +16,7 @@ public class UserDAO {
 
         String sql = "INSERT INTO users (userName, password, email, phone, address, role) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (var connection = DatabaseConnection.getCon(); var preparedStatement = connection.prepareStatement(sql)) {
+        try (var connection = DatabaseConnection.getCon(); var preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
 
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
@@ -20,8 +24,13 @@ public class UserDAO {
             preparedStatement.setString(4, user.getPhone());
             preparedStatement.setString(5, user.getAddress());
             preparedStatement.setString(6, user.getRole());
-
             preparedStatement.executeUpdate();
+
+            try (var keys = preparedStatement.getGeneratedKeys()) {
+                if (keys.next()) {
+                    user.setUserId(keys.getInt(1));
+                }
+            }
 
             Logger.info("User saved to database: " + user.getUserName());
 
@@ -44,14 +53,68 @@ public class UserDAO {
             try (var resultSet = preparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    user = new User();
 
-                    user.setUserName(resultSet.getString("userName"));
-                    user.setPassword(resultSet.getString("password"));
-                    user.setEmail(resultSet.getString("email"));
-                    user.setPhone(resultSet.getString("phone"));
-                    user.setAddress(resultSet.getString("address"));
-                    user.setRole(resultSet.getString("role"));
+                    String role = resultSet.getString("role");
+                    int userId = resultSet.getInt("userId");
+                    String email = resultSet.getString("email");
+                    String phone = resultSet.getString("phone");
+                    String address = resultSet.getString("address");
+                    String password = resultSet.getString("password");
+
+                    // RETURN CORRECT OBJECT TYPE BASED ON ROLE
+                    switch (role.toLowerCase()) {
+
+                        case "trainer":
+                            Trainer trainer = new Trainer();
+                            trainer.setUserId(userId);
+                            trainer.setUserName(username);
+                            trainer.setPassword(password);
+                            trainer.setEmail(email);
+                            trainer.setPhone(phone);
+                            trainer.setAddress(address);
+                            trainer.setRole(role);
+
+                            // If trainerId == userId
+                            trainer.setTrainerId(userId);
+
+                            user = trainer;
+                            break;
+
+                        case "admin":
+                            Admin admin = new Admin();
+                            admin.setUserId(userId);
+                            admin.setUserName(username);
+                            admin.setPassword(password);
+                            admin.setEmail(email);
+                            admin.setPhone(phone);
+                            admin.setAddress(address);
+                            admin.setRole(role);
+                            user = admin;
+                            break;
+
+                        case "member":
+                            Member member = new Member();
+                            member.setUserId(userId);
+                            member.setUserName(username);
+                            member.setPassword(password);
+                            member.setEmail(email);
+                            member.setPhone(phone);
+                            member.setAddress(address);
+                            member.setRole(role);
+                            user = member;
+                            break;
+
+                        default:
+                            user = new User();
+                            user.setUserId(userId);
+                            user.setUserName(username);
+                            user.setPassword(password);
+                            user.setEmail(email);
+                            user.setPhone(phone);
+                            user.setAddress(address);
+                            user.setRole(role);
+                            break;
+                    }
 
                     Logger.info("User retrieved from DB: " + username);
                 } else {
@@ -79,15 +142,65 @@ public class UserDAO {
             try (var resultSet = preparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    user = new User();
 
-                    user.setUserId(resultSet.getInt("userId"));
-                    user.setUserName(resultSet.getString("userName"));
-                    user.setPassword(resultSet.getString("password"));
-                    user.setEmail(resultSet.getString("email"));
-                    user.setPhone(resultSet.getString("phone"));
-                    user.setAddress(resultSet.getString("address"));
-                    user.setRole(resultSet.getString("role"));
+                    String username = resultSet.getString("userName");
+                    String password = resultSet.getString("password");
+                    String email = resultSet.getString("email");
+                    String phone = resultSet.getString("phone");
+                    String address = resultSet.getString("address");
+                    String role = resultSet.getString("role");
+                    int userId = resultSet.getInt("userId");
+
+                    switch (role.toLowerCase()) {
+
+                        case "trainer":
+                            Trainer trainer = new Trainer();
+                            trainer.setUserId(userId);
+                            trainer.setUserName(username);
+                            trainer.setPassword(password);
+                            trainer.setEmail(email);
+                            trainer.setPhone(phone);
+                            trainer.setAddress(address);
+                            trainer.setRole(role);
+                            trainer.setTrainerId(userId); // if trainerId = userId
+                            user = trainer;
+                            break;
+
+                        case "admin":
+                            Admin admin = new Admin();
+                            admin.setUserId(userId);
+                            admin.setUserName(username);
+                            admin.setPassword(password);
+                            admin.setEmail(email);
+                            admin.setPhone(phone);
+                            admin.setAddress(address);
+                            admin.setRole(role);
+                            user = admin;
+                            break;
+
+                        case "member":
+                            Member member = new Member();
+                            member.setUserId(userId);
+                            member.setUserName(username);
+                            member.setPassword(password);
+                            member.setEmail(email);
+                            member.setPhone(phone);
+                            member.setAddress(address);
+                            member.setRole(role);
+                            user = member;
+                            break;
+
+                        default:
+                            user = new User();
+                            user.setUserId(userId);
+                            user.setUserName(username);
+                            user.setPassword(password);
+                            user.setEmail(email);
+                            user.setPhone(phone);
+                            user.setAddress(address);
+                            user.setRole(role);
+                            break;
+                    }
 
                     Logger.info("User retrieved from DB by ID: " + id);
                 } else {
