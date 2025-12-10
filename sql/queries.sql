@@ -25,10 +25,11 @@ trainerId Int,
 FOREIGN KEY(trainerId) REFERENCES users(userId)
 );
 
-CREATE TABLE workoutGear(
+CREATE TABLE merch(
 merchId SERIAL PRIMARY KEY,
 name TEXT NOT NULL,
 merchDesc TEXT,
+merchType TEXT,
 cost DOUBLE PRECISION NOT NULL,
 quantity INT
 );

@@ -8,23 +8,23 @@ public class MembershipDAO {
 
     public void saveNewMembershipToDB(Membership membership, User user) {
 
-        String sql = "INSERT INTO membership (msId, msType, msDesc, msCost, userId) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO membership (msType, msDesc, msCost, userId) VALUES (?, ?, ?, ?)";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, membership.getMsId());
-            preparedStatement.setString(2, membership.getMsType());
-            preparedStatement.setString(3, membership.getMsDesc());
-            preparedStatement.setDouble(4, membership.getMsCost());
-            preparedStatement.setInt(5, user.getUserId());
+
+            preparedStatement.setString(1, membership.getMsType());
+            preparedStatement.setString(2, membership.getMsDesc());
+            preparedStatement.setDouble(3, membership.getMsCost());
+            preparedStatement.setInt(4, user.getUserId());
+
             preparedStatement.executeUpdate();
 
-            Logger.info("Membership saved to database");
+            Logger.info("Membership saved to database for user ID: " + user.getUserId());
 
         } catch (Exception e) {
+            Logger.error("Error saving membership to database: " + e.getMessage());
             e.printStackTrace();
-            String message = "Error saving membership to database";
-            Logger.error(message + e.getMessage());
         }
     }
 
@@ -36,11 +36,11 @@ public class MembershipDAO {
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
-            
+
             if (resultSet.next()) {
                 totalRevenue = resultSet.getDouble("total_revenue");
             }
-            
+
             Logger.info("Total revenue calculated: $" + totalRevenue);
 
         } catch (Exception e) {
@@ -58,14 +58,14 @@ public class MembershipDAO {
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
-            
+
             System.out.println("=== MEMBERSHIP STATISTICS ===");
             while (resultSet.next()) {
-                System.out.println("Type: " + resultSet.getString("msType") + 
-                    " | Count: " + resultSet.getInt("count") + 
-                    " | Avg Cost: $" + String.format("%.2f", resultSet.getDouble("avg_cost")));
+                System.out.println("Type: " + resultSet.getString("msType")
+                        + " | Count: " + resultSet.getInt("count")
+                        + " | Avg Cost: $" + String.format("%.2f", resultSet.getDouble("avg_cost")));
             }
-            
+
             Logger.info("Membership statistics displayed");
 
         } catch (Exception e) {
