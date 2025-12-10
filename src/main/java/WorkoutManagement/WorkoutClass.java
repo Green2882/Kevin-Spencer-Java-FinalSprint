@@ -1,6 +1,7 @@
 package WorkoutManagement;
 
 public class WorkoutClass {
+
     private String wcId; // WorkoutClass ID
     private String wcType; // WorkoutClass Type
     private String wcDesc; // WorkoutClass Description
@@ -8,6 +9,12 @@ public class WorkoutClass {
 
     public WorkoutClass(String wcId, String wcType, String wcDesc, String trainerId) {
         this.wcId = wcId;
+        this.wcType = wcType;
+        this.wcDesc = wcDesc;
+        this.trainerId = trainerId;
+    }
+
+    public WorkoutClass(String wcType, String wcDesc, String trainerId) {
         this.wcType = wcType;
         this.wcDesc = wcDesc;
         this.trainerId = trainerId;

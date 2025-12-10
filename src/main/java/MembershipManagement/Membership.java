@@ -1,15 +1,14 @@
 package MembershipManagement;
 
 public class Membership {
+
     private String msId;
     private String msType;
     private String msDesc;
     private double msCost;
-    private Users.User userId;
+    private int userId;
 
-
-    public Membership(String msId, String msType, String msDesc, double msCost, Users.User userId) {
-        this.msId = msId;
+    public Membership(String msType, String msDesc, double msCost, int userId) {
         this.msType = msType;
         this.msDesc = msDesc;
         this.msCost = msCost;
@@ -51,11 +50,11 @@ public class Membership {
         this.msCost = msCost;
     }
 
-    public Users.User getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Users.User userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }

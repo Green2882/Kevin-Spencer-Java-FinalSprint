@@ -38,4 +38,14 @@ public class MerchService {
         }
     }
 
+    // View total value of all merch
+    public void viewTotalMerchValue() {
+        System.out.println("Merchandise Stock Value Report");
+
+        double totalValue = merchDAO.getTotalMerchValue();
+
+        System.out.println("Total Merchandise Value: $" + String.format("%.2f", totalValue));
+        Logger.info("Stock value report displayed: $" + totalValue);
+    }
+
 }

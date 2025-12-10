@@ -1,9 +1,15 @@
 
 import java.util.Scanner;
 
+import GymMerchandiseManagement.Merch;
+import GymMerchandiseManagement.MerchService;
+import MembershipManagement.Membership;
 import MembershipManagement.MembershipService;
+import Roles.Trainer;
 import Users.User;
 import Users.UserService;
+import WorkoutManagement.WorkoutClass;
+import WorkoutManagement.WorkoutClassService;
 
 public class demo {
 
@@ -84,6 +90,9 @@ public class demo {
 
         System.out.println("Welcome " + loggedInUser.getUserName());
 
+        MerchService merchService = new MerchService();
+        WorkoutClassService workoutService = new WorkoutClassService();
+
         // ADMIN MENU
         if (userService.isAdmin(loggedInUser)) {
             boolean adminRunning = true;
@@ -116,19 +125,37 @@ public class demo {
                         break;
 
                     case "2":
-                        System.out.println("View memberships selected.");
+                        membershipService.viewAllmemberships();
                         break;
                     case "3":
                         membershipService.viewTotalRevenue();
                         break;
                     case "4":
-                        System.out.println("Add merch selected.");
+                        System.out.println("Enter merchandise name: ");
+                        String name = input.nextLine();
+
+                        System.out.println("Enter description: ");
+                        String desc = input.nextLine();
+
+                        System.out.println("Enter merchandise type (e.g., drink, food, gear): ");
+                        String type = input.nextLine();
+
+                        System.out.println("Enter cost: ");
+                        double cost = Double.parseDouble(input.nextLine());
+
+                        System.out.println("Enter quantity: ");
+                        int quantity = Integer.parseInt(input.nextLine());
+
+                        Merch merch = new Merch(name, desc, type, cost, quantity);
+
+                        merchService.addNewMerch(merch);
+
                         break;
                     case "5":
                         System.out.println("Update merch cost selected.");
                         break;
                     case "6":
-                        System.out.println("Print stock report selected.");
+                        merchService.printStockReport();
                         break;
                     case "7":
                         System.out.println("Print total stock value selected.");
@@ -159,22 +186,45 @@ public class demo {
 
                 switch (choice) {
                     case "1":
-                        System.out.println("Create class selected.");
+
+                        System.out.println("Enter workout type (Yoga, HIIT, Spin, etc.): ");
+                        String wcType = input.nextLine();
+
+                        System.out.println("Enter workout description: ");
+                        String wcDesc = input.nextLine();
+
+                        WorkoutClass newClass = new WorkoutClass(wcType, wcDesc, String.valueOf(loggedInUser.getUserId()));
+
+                        workoutService.saveNewWorkoutClass(newClass, (Trainer) loggedInUser);
                         break;
+
                     case "2":
-                        System.out.println("Update class selected.");
+                        System.out.println("Enter the ID of the class you want to update: ");
+                        String updateId = input.nextLine();
+
+                        System.out.println("Enter new class type: ");
+                        String newType = input.nextLine();
+
+                        System.out.println("Enter new class description: ");
+                        String newDesc = input.nextLine();
+
+                        WorkoutClass updatedClass = new WorkoutClass(updateId, newType, newDesc, String.valueOf(loggedInUser.getUserId()));
+
                         break;
                     case "3":
-                        System.out.println("Delete class selected.");
+                        System.out.println("Enter the ID of the class to delete: ");
+                        String deleteId = input.nextLine();
+
+                        workoutService.deleteWorkoutClass(deleteId);
                         break;
                     case "4":
                         System.out.println("View assigned classes.");
                         break;
                     case "5":
-                        System.out.println("Membership purchase selected.");
+                        purchaseMembership(loggedInUser);
                         break;
                     case "6":
-                        System.out.println("View merch selected.");
+                        merchService.viewAllProducts();
                         break;
                     case "0":
                         userService.logout(loggedInUser);
@@ -200,16 +250,16 @@ public class demo {
 
                 switch (choice) {
                     case "1":
-                        System.out.println("Browsing classes...");
+                        workoutService.viewAllWorkoutClasses();
                         break;
                     case "2":
                         System.out.println("Viewing joined classes...");
                         break;
                     case "3":
-                        System.out.println("Purchasing membership...");
+                        purchaseMembership(loggedInUser);
                         break;
                     case "4":
-                        System.out.println("Viewing merch...");
+                        merchService.viewAllProducts();
                         break;
                     case "0":
                         userService.logout(loggedInUser);
@@ -220,6 +270,52 @@ public class demo {
                 }
             }
         }
+    }
+
+    private static void purchaseMembership(User user) {
+
+        Scanner in = new Scanner(System.in);
+        MembershipService membershipService = new MembershipService();
+
+        System.out.println("\n=== Purchase Membership ===");
+
+        System.out.println("Choose membership type:");
+        System.out.println("1. Monthly");
+        System.out.println("2. Quarterly");
+        System.out.println("3. Yearly");
+        System.out.print("Enter choice: ");
+
+        String choice = in.nextLine();
+        String type = "";
+        double cost = 0.0;
+        String desc = "";
+
+        switch (choice) {
+            case "1":
+                type = "Monthly";
+                cost = 39.99;
+                desc = "30-day gym access";
+                break;
+            case "2":
+                type = "Quarterly";
+                cost = 99.99;
+                desc = "90-day gym access";
+                break;
+            case "3":
+                type = "Yearly";
+                cost = 299.99;
+                desc = "Full-year gym access";
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                return;
+        }
+
+        Membership membership = new Membership(type, desc, cost, user.getUserId());
+
+        membershipService.saveNewMembership(membership, user);
+
+        System.out.println("Membership purchase successful!");
     }
 
 }
