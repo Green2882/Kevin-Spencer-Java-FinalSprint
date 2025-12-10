@@ -29,36 +29,34 @@ public class WorkoutClassDAO {
         }
     }
 
-    public void printAllWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
+    public void printAllWorkoutClasses() throws SQLException {
         String sql = "SELECT * FROM workoutclass";
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println(" Class ID: " + resultSet.getString("wcId") + " Class Description: " + resultSet.getString("wcDesc"));
+                System.out.println("Class ID: " + resultSet.getString("wcId")
+                        + " | Type: " + resultSet.getString("wcType")
+                        + " | Desc: " + resultSet.getString("wcDesc")
+                        + " | Trainer ID: " + resultSet.getInt("trainerId"));
             }
         }
     }
 
-    // View assigned classes
-    public void printAllAssignedWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
+    // Members & Trainers: View assigned classes
+    public void printAllAssignedWorkoutClasses(int trainerId) throws SQLException {
         String sql = "SELECT * FROM workoutclass WHERE trainerId = ?";
+
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, trainerId);
+
             var resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println(" Class ID: " + resultSet.getString("wcId") + " Class Description: " + resultSet.getString("wcDesc"));
-            }
-        }
-    }
-    
-    public void printAllAssignedMemberWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
-        String sql = "SELECT * FROM workoutclass WHERE msId = ?";
-        try (var connection = DatabaseConnection.getCon()) {
-            var preparedStatement = connection.prepareStatement(sql);
-            var resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                System.out.println(" Class ID: " + resultSet.getString("wcId") + " Class Description: " + resultSet.getString("wcDesc"));
+                System.out.println("Class ID: " + resultSet.getString("wcId")
+                        + " | Type: " + resultSet.getString("wcType")
+                        + " | Desc: " + resultSet.getString("wcDesc")
+                        + " | Trainer ID: " + resultSet.getInt("trainerId"));
             }
         }
     }

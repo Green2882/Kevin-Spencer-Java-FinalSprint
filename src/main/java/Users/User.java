@@ -19,6 +19,7 @@ public class User {
         this.phone = phone;
         this.address = address;
         this.role = role;
+        this.userId = userId;
     }
 
     // Constructors
