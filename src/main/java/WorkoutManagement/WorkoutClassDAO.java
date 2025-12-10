@@ -40,6 +40,29 @@ public class WorkoutClassDAO {
         }
     }
 
+    // View assigned classes
+    public void printAllAssignedWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
+        String sql = "SELECT * FROM workoutclass WHERE trainerId = ?";
+        try (var connection = DatabaseConnection.getCon()) {
+            var preparedStatement = connection.prepareStatement(sql);
+            var resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println(" Class ID: " + resultSet.getString("wcId") + " Class Description: " + resultSet.getString("wcDesc"));
+            }
+        }
+    }
+    
+    public void printAllAssignedMemberWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
+        String sql = "SELECT * FROM workoutclass WHERE msId = ?";
+        try (var connection = DatabaseConnection.getCon()) {
+            var preparedStatement = connection.prepareStatement(sql);
+            var resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println(" Class ID: " + resultSet.getString("wcId") + " Class Description: " + resultSet.getString("wcDesc"));
+            }
+        }
+    }
+
     // Trainer: Update workout class
     public void updateWorkoutClass(WorkoutClass workoutClass) {
         String sql = "UPDATE workoutclass SET wcType = ?, wcDesc = ? WHERE wcId = ?";
