@@ -8,23 +8,23 @@ public class MembershipDAO {
 
     public void saveNewMembershipToDB(Membership membership, User user) {
 
-        String sql = "INSERT INTO membership (msId, msType, msDesc, msCost, userId) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO membership (msType, msDesc, msCost, userId) VALUES (?, ?, ?, ?)";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, membership.getMsId());
-            preparedStatement.setString(2, membership.getMsType());
-            preparedStatement.setString(3, membership.getMsDesc());
-            preparedStatement.setDouble(4, membership.getMsCost());
-            preparedStatement.setInt(5, user.getUserId());
+
+            preparedStatement.setString(1, membership.getMsType());
+            preparedStatement.setString(2, membership.getMsDesc());
+            preparedStatement.setDouble(3, membership.getMsCost());
+            preparedStatement.setInt(4, user.getUserId());
+
             preparedStatement.executeUpdate();
 
-            Logger.info("Membership saved to database");
+            Logger.info("Membership saved to database for user ID: " + user.getUserId());
 
         } catch (Exception e) {
+            Logger.error("Error saving membership to database: " + e.getMessage());
             e.printStackTrace();
-            String message = "Error saving membership to database";
-            Logger.error(message + e.getMessage());
         }
     }
 
@@ -36,11 +36,11 @@ public class MembershipDAO {
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
-            
+
             if (resultSet.next()) {
                 totalRevenue = resultSet.getDouble("total_revenue");
             }
-            
+
             Logger.info("Total revenue calculated: $" + totalRevenue);
 
         } catch (Exception e) {
@@ -51,9 +51,9 @@ public class MembershipDAO {
         return totalRevenue;
     }
 
-    // Admin: Get membership statistics
-    public void getMembershipStatistics() {
-        String sql = "SELECT msType, COUNT(*) as count, AVG(msCost) as avg_cost FROM membership GROUP BY msType";
+    // Admin: Get all memberships
+    public void getAllMemberships() {
+        String sql = "SELECT * FROM membership";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
@@ -61,16 +61,21 @@ public class MembershipDAO {
             
             System.out.println("Membership Statistics");
             while (resultSet.next()) {
-                System.out.println("Type: " + resultSet.getString("msType") + 
-                    " | Count: " + resultSet.getInt("count") + 
-                    " | Avg Cost: $" + String.format("%.2f", resultSet.getDouble("avg_cost")));
+                System.out.println(
+                        "ID: " + resultSet.getInt("msId")
+                        + " | Type: " + resultSet.getString("msType")
+                        + " | Desc: " + resultSet.getString("msDesc")
+                        + " | Cost: $" + resultSet.getDouble("msCost")
+                        + " | User ID: " + resultSet.getInt("userId")
+                );
             }
-            
-            Logger.info("Membership statistics displayed");
+
+            Logger.info("All memberships retrieved");
 
         } catch (Exception e) {
+            Logger.error("Error retrieving memberships: " + e.getMessage());
             e.printStackTrace();
-            Logger.error("Error retrieving membership statistics: " + e.getMessage());
         }
     }
+
 }

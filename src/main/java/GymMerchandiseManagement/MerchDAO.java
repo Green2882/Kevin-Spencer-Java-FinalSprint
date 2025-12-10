@@ -1,6 +1,7 @@
 package GymMerchandiseManagement;
 
 import java.sql.SQLException;
+
 import DatabaseConnection.DatabaseConnection;
 import Logger.Logger;
 
