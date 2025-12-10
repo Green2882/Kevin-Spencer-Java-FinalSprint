@@ -51,26 +51,32 @@ public class MembershipDAO {
         return totalRevenue;
     }
 
-    // Admin: Get membership statistics
-    public void getMembershipStatistics() {
-        String sql = "SELECT msType, COUNT(*) as count, AVG(msCost) as avg_cost FROM membership GROUP BY msType";
+    // Admin: Get all memberships
+    public void getAllMemberships() {
+        String sql = "SELECT * FROM membership";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
 
-            System.out.println("=== MEMBERSHIP STATISTICS ===");
+            System.out.println("=== ALL MEMBERSHIPS ===");
+
             while (resultSet.next()) {
-                System.out.println("Type: " + resultSet.getString("msType")
-                        + " | Count: " + resultSet.getInt("count")
-                        + " | Avg Cost: $" + String.format("%.2f", resultSet.getDouble("avg_cost")));
+                System.out.println(
+                        "ID: " + resultSet.getInt("msId")
+                        + " | Type: " + resultSet.getString("msType")
+                        + " | Desc: " + resultSet.getString("msDesc")
+                        + " | Cost: $" + resultSet.getDouble("msCost")
+                        + " | User ID: " + resultSet.getInt("userId")
+                );
             }
 
-            Logger.info("Membership statistics displayed");
+            Logger.info("All memberships retrieved");
 
         } catch (Exception e) {
+            Logger.error("Error retrieving memberships: " + e.getMessage());
             e.printStackTrace();
-            Logger.error("Error retrieving membership statistics: " + e.getMessage());
         }
     }
+
 }
