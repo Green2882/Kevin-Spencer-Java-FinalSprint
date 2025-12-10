@@ -1,6 +1,7 @@
 package GymMerchandiseManagement;
 
 import java.sql.SQLException;
+
 import DatabaseConnection.DatabaseConnection;
 import Logger.Logger;
 
@@ -8,7 +9,7 @@ public class FoodsDAO {
 
     public void saveNewFoodToDB(Food food) {
 
-        String sql = "INSERT INTO food (merchId, name, merchdesc, cost, quantity) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO food (name, merchdesc, cost, quantity) VALUES (?, ?, ?, ?, ?)";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);

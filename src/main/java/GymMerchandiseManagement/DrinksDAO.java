@@ -1,6 +1,7 @@
 package GymMerchandiseManagement;
 
 import java.sql.SQLException;
+
 import DatabaseConnection.DatabaseConnection;
 import Logger.Logger;
 
@@ -8,7 +9,7 @@ public class DrinksDAO {
 
     public void saveNewDrinkToDB(Drinks drinks) {
 
-        String sql = "INSERT INTO drinks (merchId, name, merchdesc, cost, quantity) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO drinks (name, merchdesc, cost, quantity) VALUES (?, ?, ?, ?, ?)";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
@@ -35,10 +36,10 @@ public class DrinksDAO {
             var resultSet = preparedStatement.executeQuery();
             System.out.println("Drinks Inventory");
             while (resultSet.next()) {
-                System.out.println("ID: " + resultSet.getInt("merchId") + 
-                    " | Name: " + resultSet.getString("name") + 
-                    " | Cost: $" + resultSet.getDouble("cost") + 
-                    " | Quantity: " + resultSet.getInt("quantity"));
+                System.out.println("ID: " + resultSet.getInt("merchId")
+                        + " | Name: " + resultSet.getString("name")
+                        + " | Cost: $" + resultSet.getDouble("cost")
+                        + " | Quantity: " + resultSet.getInt("quantity"));
             }
         }
     }
