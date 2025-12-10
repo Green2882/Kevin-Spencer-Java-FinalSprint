@@ -5,39 +5,40 @@ import java.sql.SQLException;
 import DatabaseConnection.DatabaseConnection;
 import Logger.Logger;
 
-public class FoodsDAO {
+public class MerchDAO {
 
-    public void saveNewFoodToDB(Food food) {
+    public void saveNewMerchItemToDB(Merch merch) {
 
-        String sql = "INSERT INTO food (name, merchdesc, cost, quantity) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO merch (name, merchdesc, type, cost, quantity) VALUES (?, ?, ?, ?, ?)";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, food.getMerchId());
-            preparedStatement.setString(2, food.getFoodName());
-            preparedStatement.setString(3, food.getFoodDesc());
-            preparedStatement.setDouble(4, food.getFoodCost());
-            preparedStatement.setInt(5, food.getFoodQuantity());
+            preparedStatement.setString(1, merch.getName());
+            preparedStatement.setString(2, merch.getMerchDesc());
+            preparedStatement.setString(3, merch.getType());
+            preparedStatement.setDouble(4, merch.getCost());
+            preparedStatement.setInt(5, merch.getQuantity());
             preparedStatement.executeUpdate();
 
-            Logger.info("Food saved to database");
+            Logger.info("Merchandise saved to database");
 
         } catch (Exception e) {
             e.printStackTrace();
-            String message = "Error saving food to database";
+            String message = "Error saving merchandise to database";
             Logger.error(message + e.getMessage());
         }
     }
 
-    public void getAllFoodItems() throws SQLException {
-        String sql = "SELECT * FROM food";
+    public void getAllMerchItems() throws SQLException {
+        String sql = "SELECT * FROM merchandise";
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
-            System.out.println("Food Inventory");
+            System.out.println("Merchandise Inventory");
             while (resultSet.next()) {
                 System.out.println("ID: " + resultSet.getInt("merchId") + 
                     " | Name: " + resultSet.getString("name") + 
+                    " | Type: " + resultSet.getString("type") +
                     " | Cost: $" + resultSet.getDouble("cost") + 
                     " | Quantity: " + resultSet.getInt("quantity"));
             }

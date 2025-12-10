@@ -58,9 +58,8 @@ public class MembershipDAO {
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
-
-            System.out.println("=== ALL MEMBERSHIPS ===");
-
+            
+            System.out.println("Membership Statistics");
             while (resultSet.next()) {
                 System.out.println(
                         "ID: " + resultSet.getInt("msId")
