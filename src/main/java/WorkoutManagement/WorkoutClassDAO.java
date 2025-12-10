@@ -10,14 +10,14 @@ public class WorkoutClassDAO {
 
     public void saveNewWorkoutClassToDB(WorkoutClass workoutclass, Trainer trainer) {
 
-        String sql = "INSERT INTO workoutclass (wcId, wcType, wcDesc, trainerId) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO workoutclass (wcType, wcDesc, trainerId) VALUES (?, ?, ?)";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, workoutclass.getWcId());
-            preparedStatement.setString(2, workoutclass.getWcType());
-            preparedStatement.setString(3, workoutclass.getWcDesc());
-            preparedStatement.setInt(4, trainer.getTrainerId());
+            preparedStatement.setString(1, workoutclass.getWcType());
+            preparedStatement.setString(2, workoutclass.getWcDesc());
+            preparedStatement.setInt(3, trainer.getTrainerId());
+
             preparedStatement.executeUpdate();
 
             Logger.info("Workout Class saved to database");
@@ -49,9 +49,9 @@ public class WorkoutClassDAO {
             preparedStatement.setString(1, workoutClass.getWcType());
             preparedStatement.setString(2, workoutClass.getWcDesc());
             preparedStatement.setString(3, workoutClass.getWcId());
-            
+
             int rowsAffected = preparedStatement.executeUpdate();
-            
+
             if (rowsAffected > 0) {
                 Logger.info("Workout Class updated: " + workoutClass.getWcId());
                 System.out.println("Workout class updated successfully!");
@@ -73,9 +73,9 @@ public class WorkoutClassDAO {
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, wcId);
-            
+
             int rowsAffected = preparedStatement.executeUpdate();
-            
+
             if (rowsAffected > 0) {
                 Logger.info("Workout Class deleted: " + wcId);
                 System.out.println("Workout class deleted successfully!");
