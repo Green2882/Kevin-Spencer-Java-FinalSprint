@@ -1,9 +1,7 @@
 package MembershipManagement;
 
-import java.sql.SQLException;
-import Users.User;
-import Roles.Admin;
 import Logger.Logger;
+import Users.User;
 
 public class MembershipService {
 
@@ -26,8 +24,8 @@ public class MembershipService {
     }
 
     // Admins: Track membership statistics
-    public void viewMembershipStatistics() {
-        membershipDao.getMembershipStatistics();
+    public void viewAllmemberships() {
+        membershipDao.getAllMemberships();
         Logger.info("Membership statistics displayed");
     }
 
