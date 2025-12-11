@@ -1,0 +1,116 @@
+2025-12-11T12:56:40.316853 [ERROR] User not found in DB: user1mem
+2025-12-11T12:57:10.755159 [INFO] User saved to database: user1mem
+2025-12-11T12:57:10.755833 [INFO] New user registered: user1mem
+2025-12-11T12:57:18.575318 [ERROR] User not found in DB: user2train
+2025-12-11T12:57:43.090609 [INFO] User saved to database: user2train
+2025-12-11T12:57:43.091312 [INFO] New user registered: user2train
+2025-12-11T12:57:51.050792 [ERROR] User not found in DB: user3ad
+2025-12-11T12:58:14.545295 [INFO] User saved to database: user3ad
+2025-12-11T12:58:14.546042 [INFO] New user registered: user3ad
+2025-12-11T13:00:59.834573 [INFO] User retrieved from DB: user2train
+2025-12-11T13:00:59.857480 [ERROR] Login failed: incorrect password for: user2train
+2025-12-11T13:01:09.276085 [INFO] User retrieved from DB: user2train
+2025-12-11T13:01:09.315685 [INFO] User logged in: user2train
+2025-12-11T13:01:25.395099 [INFO] Workout Class saved to database
+2025-12-11T13:01:25.395806 [INFO] New workout created.
+2025-12-11T13:02:16.592528 [ERROR] No workout class found with ID: 0
+2025-12-11T13:02:16.595272 [INFO] Workout class update completed for: 0
+2025-12-11T13:03:13.488509 [ERROR] No workout class found with ID: 0
+2025-12-11T13:03:13.490371 [INFO] Workout class update completed for: 0
+2025-12-11T13:04:41.989125 [ERROR] No workout class found with ID: 0
+2025-12-11T13:04:41.989935 [INFO] Workout class update completed for: 0
+2025-12-11T13:16:02.706993 [INFO] User retrieved from DB: user2train
+2025-12-11T13:16:02.733949 [INFO] User logged in: user2train
+2025-12-11T13:16:09.722882 [INFO] Workout Class updated: 1
+2025-12-11T13:16:09.723839 [INFO] Workout class update completed for: 1
+2025-12-11T13:16:29.853137 [INFO] Workout Class saved to database
+2025-12-11T13:16:29.854043 [INFO] New workout created.
+2025-12-11T13:19:12.238475 [INFO] User retrieved from DB: user2train
+2025-12-11T13:19:12.267576 [INFO] User logged in: user2train
+2025-12-11T13:19:15.050544 [ERROR] Error viewing workout classes: No value specified for parameter 1.
+2025-12-11T13:23:15.854620 [ERROR] Error viewing workout classes: No value specified for parameter 1.
+2025-12-11T13:23:31.306336 [INFO] User retrieved from DB: user2train
+2025-12-11T13:23:31.336467 [INFO] User logged in: user2train
+2025-12-11T13:23:33.494849 [INFO] Current workout classes viewed
+2025-12-11T13:24:40.775696 [INFO] User retrieved from DB: user2train
+2025-12-11T13:24:40.802920 [INFO] User logged in: user2train
+2025-12-11T13:24:44.814133 [INFO] Workout Class deleted: 2
+2025-12-11T13:24:44.814956 [INFO] Workout class deletion completed for: 2
+2025-12-11T13:25:10.895716 [INFO] Workout Class saved to database
+2025-12-11T13:25:10.896493 [INFO] New workout created.
+2025-12-11T13:25:12.964297 [INFO] Current workout classes viewed
+2025-12-11T13:25:20.441931 [INFO] Workout Class deleted: 3
+2025-12-11T13:25:20.442918 [INFO] Workout class deletion completed for: 3
+2025-12-11T13:26:29.679547 [INFO] Workout Class saved to database
+2025-12-11T13:26:29.680725 [INFO] New workout created.
+2025-12-11T13:26:32.704836 [INFO] Current workout classes viewed
+2025-12-11T13:26:38.875288 [INFO] Workout Class deleted: 4
+2025-12-11T13:26:38.876805 [INFO] Workout class deletion completed for: 4
+2025-12-11T13:27:41.081503 [INFO] Workout Class saved to database
+2025-12-11T13:27:41.083008 [INFO] New workout created.
+2025-12-11T13:27:43.376020 [INFO] Current workout classes viewed
+2025-12-11T13:28:09.621947 [INFO] User retrieved from DB: user2train
+2025-12-11T13:28:09.649371 [INFO] User logged in: user2train
+2025-12-11T13:28:11.920325 [INFO] Current workout classes viewed
+2025-12-11T13:28:17.891583 [INFO] Workout Class deleted: 5
+2025-12-11T13:28:17.892645 [INFO] Workout class deletion completed for: 5
+2025-12-11T13:28:31.722115 [INFO] Membership saved to database for user ID: 2
+2025-12-11T13:28:31.722690 [INFO] New membership created for user: user2train
+2025-12-11T13:28:50.698435 [INFO] Workout Class saved to database
+2025-12-11T13:28:50.699265 [INFO] New workout created.
+2025-12-11T13:28:53.231590 [INFO] User logged out: user2train
+2025-12-11T13:28:59.379004 [INFO] User retrieved from DB: user1mem
+2025-12-11T13:28:59.418198 [INFO] User logged in: user1mem
+2025-12-11T13:29:01.855298 [INFO] Workout classes viewed
+2025-12-11T13:29:10.320169 [INFO] Membership saved to database for user ID: 1
+2025-12-11T13:29:10.321394 [INFO] New membership created for user: user1mem
+2025-12-11T13:29:14.245809 [INFO] User logged out: user1mem
+2025-12-11T13:29:23.261554 [INFO] User retrieved from DB: user3ad
+2025-12-11T13:29:23.299706 [INFO] User logged in: user3ad
+2025-12-11T13:29:27.347288 [INFO] User logged out: user3ad
+2025-12-11T13:29:31.843138 [ERROR] User not found in DB: mommy
+2025-12-11T13:29:51.927841 [INFO] User saved to database: mommy
+2025-12-11T13:29:51.928427 [INFO] New user registered: mommy
+2025-12-11T13:30:09.014271 [INFO] User retrieved from DB: user3ad
+2025-12-11T13:30:09.049883 [INFO] User logged in: user3ad
+2025-12-11T13:30:13.655970 [INFO] User deleted from DB by ID: 4
+2025-12-11T13:30:20.541392 [INFO] All memberships retrieved
+2025-12-11T13:30:20.541934 [INFO] Membership statistics displayed
+2025-12-11T13:31:19.952255 [INFO] Total revenue calculated: $339.98
+2025-12-11T13:31:19.954092 [INFO] Revenue report displayed: $339.98
+2025-12-11T13:32:00.745240 [ERROR] Error saving merchandise to databaseERROR: column "type" of relation "merch" does not exist
+  Position: 37
+2025-12-11T13:32:00.746617 [INFO] New merchandise added: hoodie
+2025-12-11T13:33:12.534113 [INFO] User retrieved from DB: user3ad
+2025-12-11T13:33:12.561024 [INFO] User logged in: user3ad
+2025-12-11T13:33:27.732414 [INFO] Merchandise saved to database
+2025-12-11T13:33:27.733188 [INFO] New merchandise added: hoodie
+2025-12-11T13:33:54.704715 [INFO] Merchandise saved to database
+2025-12-11T13:33:54.705727 [INFO] New merchandise added: test
+2025-12-11T13:34:06.304532 [INFO] Updated merch cost for ID: 2
+2025-12-11T13:34:15.897712 [ERROR] Error generating stock report: The column name type was not found in this ResultSet.
+2025-12-11T13:34:20.641460 [INFO] Stock value report displayed: $1149.95
+2025-12-11T13:37:11.470178 [INFO] User retrieved from DB: user3ad
+2025-12-11T13:37:11.497061 [INFO] User logged in: user3ad
+2025-12-11T13:37:13.838484 [ERROR] Error generating stock report: The column name type was not found in this ResultSet.
+2025-12-11T13:38:03.171254 [INFO] User retrieved from DB: user3ad
+2025-12-11T13:38:03.198931 [INFO] User logged in: user3ad
+2025-12-11T13:38:04.879935 [INFO] Stock report generated
+2025-12-11T13:38:13.377840 [INFO] Stock value report displayed: $1149.95
+2025-12-11T13:38:30.954179 [INFO] User logged out: user3ad
+2025-12-11T13:38:39.697878 [INFO] User retrieved from DB: user2train
+2025-12-11T13:38:39.735692 [INFO] User logged in: user2train
+2025-12-11T13:38:42.368729 [INFO] Product listing displayed
+2025-12-11T13:38:46.582782 [INFO] User logged out: user2train
+2025-12-11T13:38:59.070090 [ERROR] User not found in DB: user2mem
+2025-12-11T13:38:59.071123 [ERROR] Login failed: user not found: user2mem
+2025-12-11T13:39:03.652762 [INFO] User retrieved from DB: user1mem
+2025-12-11T13:39:03.693023 [INFO] User logged in: user1mem
+2025-12-11T13:39:06.042129 [INFO] Product listing displayed
+2025-12-11T13:39:16.952763 [INFO] User logged out: user1mem
+2025-12-11T13:39:22.770001 [INFO] User retrieved from DB: user3ad
+2025-12-11T13:39:22.809199 [INFO] User logged in: user3ad
+2025-12-11T13:39:25.656136 [INFO] All memberships retrieved
+2025-12-11T13:39:25.656948 [INFO] Membership statistics displayed
+2025-12-11T13:39:31.073113 [INFO] Total revenue calculated: $339.98
+2025-12-11T13:39:31.074561 [INFO] Revenue report displayed: $339.98
