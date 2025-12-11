@@ -225,7 +225,7 @@ public class demo {
                         break;
                     case "3":
                         System.out.println("Enter the ID of the class to delete: ");
-                        String deleteId = input.nextLine();
+                        int deleteId = Integer.parseInt(input.nextLine());
 
                         workoutService.deleteWorkoutClass(deleteId);
                         break;
