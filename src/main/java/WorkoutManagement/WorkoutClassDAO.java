@@ -8,20 +8,20 @@ import Roles.Trainer;
 
 /**
  * Data Access Object (DAO) for workout class management in the gym system.
- * Handles all database operations related to workout classes including creating,
- * reading, updating, and deleting workout class records with trainer assignments.
+ * Handles all database operations related to workout classes including
+ * creating, reading, updating, and deleting workout class records with trainer
+ * assignments.
  */
-
 public class WorkoutClassDAO {
 
     /**
      * Saves a new workout class to the database with trainer assignment.
-     * Associates the workout class with the specified trainer and logs the operation.
-     * 
+     * Associates the workout class with the specified trainer and logs the
+     * operation.
+     *
      * @param workoutclass the WorkoutClass object containing class details
      * @param trainer the Trainer object responsible for conducting this class
      */
-
     public void saveNewWorkoutClassToDB(WorkoutClass workoutclass, Trainer trainer) {
 
         String sql = "INSERT INTO workoutclass (wcType, wcDesc, trainerId) VALUES (?, ?, ?)";
@@ -85,15 +85,14 @@ public class WorkoutClassDAO {
             }
         }
     }
-    
+
     /**
      * Retrieves and displays workout classes available to a specific member.
      * Shows class ID and description for classes accessible by membership.
-     * 
+     *
      * @param workoutClass currently unused parameter for future functionality
      * @throws SQLException if database query execution fails
      */
-
     public void printAllAssignedMemberWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
         String sql = "SELECT * FROM workoutclass WHERE msId = ?";
         try (var connection = DatabaseConnection.getCon()) {
@@ -109,13 +108,12 @@ public class WorkoutClassDAO {
     }
 
     /**
-     * Updates an existing workout class in the database.
-     * Allows trainers to modify workout class type and description.
-     * Provides feedback on operation success or failure.
-     * 
+     * Updates an existing workout class in the database. Allows trainers to
+     * modify workout class type and description. Provides feedback on operation
+     * success or failure.
+     *
      * @param workoutClass the WorkoutClass object with updated information
      */
-
     public void updateWorkoutClass(WorkoutClass workoutClass) {
         String sql = "UPDATE workoutclass SET wcType = ?, wcDesc = ? WHERE wcId = ?";
 
@@ -142,10 +140,10 @@ public class WorkoutClassDAO {
     }
 
     /**
-     * Deletes a workout class from the database.
-     * Allows trainers to remove workout classes they are responsible for.
-     * Provides feedback on operation success or failure.
-     * 
+     * Deletes a workout class from the database. Allows trainers to remove
+     * workout classes they are responsible for. Provides feedback on operation
+     * success or failure.
+     *
      * @param wcId the unique identifier of the workout class to delete
      */
 
