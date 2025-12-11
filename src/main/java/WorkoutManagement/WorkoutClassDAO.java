@@ -47,17 +47,16 @@ public class WorkoutClassDAO {
      * Retrieves and displays all workout classes from the database.
      * Shows class ID and description for all available workout classes.
      * 
-     * @param workoutClass currently unused parameter for future functionality
      * @throws SQLException if database query execution fails
      */
 
-    public void printAllWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
+    public void printAllWorkoutClasses() throws SQLException {
         String sql = "SELECT * FROM workoutclass";
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println("Class ID: " + resultSet.getString("wcId")
+                System.out.println("Class ID: " + resultSet.getInt("wcId")
                         + " | Type: " + resultSet.getString("wcType")
                         + " | Desc: " + resultSet.getString("wcDesc")
                         + " | Trainer ID: " + resultSet.getInt("trainerId"));
@@ -69,18 +68,20 @@ public class WorkoutClassDAO {
      * Retrieves and displays workout classes assigned to a specific trainer.
      * Shows class ID and description for classes assigned to the trainer.
      * 
-     * @param workoutClass currently unused parameter for future functionality
+     * @param trainer the Trainer object whose assigned classes should be retrieved
      * @throws SQLException if database query execution fails
      */
-    
-    public void printAllAssignedWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
+    public void printAllAssignedWorkoutClasses(Trainer trainer) throws SQLException {
         String sql = "SELECT * FROM workoutclass WHERE trainerId = ?";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, trainer.getTrainerId());
             var resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println(" Class ID: " + resultSet.getString("wcId") + " Class Description: " + resultSet.getString("wcDesc"));
+                System.out.println("Class ID: " + resultSet.getInt("wcId") 
+                        + " | Type: " + resultSet.getString("wcType")
+                        + " | Description: " + resultSet.getString("wcDesc"));
             }
         }
     }
@@ -99,7 +100,7 @@ public class WorkoutClassDAO {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println("Class ID: " + resultSet.getString("wcId")
+                System.out.println("Class ID: " + resultSet.getInt("wcId")
                         + " | Type: " + resultSet.getString("wcType")
                         + " | Desc: " + resultSet.getString("wcDesc")
                         + " | Trainer ID: " + resultSet.getInt("trainerId"));
@@ -122,7 +123,7 @@ public class WorkoutClassDAO {
             var preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, workoutClass.getWcType());
             preparedStatement.setString(2, workoutClass.getWcDesc());
-            preparedStatement.setString(3, workoutClass.getWcId());
+            preparedStatement.setInt(3, workoutClass.getWcId());
 
             int rowsAffected = preparedStatement.executeUpdate();
 
@@ -148,12 +149,12 @@ public class WorkoutClassDAO {
      * @param wcId the unique identifier of the workout class to delete
      */
 
-    public void deleteWorkoutClass(String wcId) {
+    public void deleteWorkoutClass(int wcId) {
         String sql = "DELETE FROM workoutclass WHERE wcId = ?";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, wcId);
+            preparedStatement.setInt(1, wcId);
 
             int rowsAffected = preparedStatement.executeUpdate();
 
