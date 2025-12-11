@@ -36,6 +36,7 @@ public class MerchService {
             merchDAO.getAllMerchItems();
             Logger.info("Stock report generated");
         } catch (Exception e) {
+            e.printStackTrace();
             Logger.error("Error generating stock report: " + e.getMessage());
             System.out.println("Error generating stock report.");
         }

@@ -89,7 +89,6 @@ public class demo {
         }
 
         System.out.println("Welcome " + loggedInUser.getUserName());
-
         MerchService merchService = new MerchService();
         WorkoutClassService workoutService = new WorkoutClassService();
 
@@ -212,13 +211,15 @@ public class demo {
                         System.out.println("Enter the ID of the class you want to update: ");
                         String updateId = input.nextLine();
 
+                        int updateToId = Integer.parseInt(updateId);
+
                         System.out.println("Enter new class type: ");
                         String newType = input.nextLine();
 
                         System.out.println("Enter new class description: ");
                         String newDesc = input.nextLine();
 
-                        WorkoutClass updatedClass = new WorkoutClass(updateId, newType, newDesc);
+                        WorkoutClass updatedClass = new WorkoutClass(updateToId, newType, newDesc);
 
                         workoutService.updateWorkoutClass(updatedClass);
 
