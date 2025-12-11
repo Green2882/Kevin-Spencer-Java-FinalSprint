@@ -193,7 +193,7 @@ public class UserDAO {
                             trainer.setPhone(phone);
                             trainer.setAddress(address);
                             trainer.setRole(role);
-                            trainer.setTrainerId(userId); // if trainerId = userId
+                            trainer.setTrainerId(userId);
                             user = trainer;
                             break;
 
