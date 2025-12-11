@@ -5,7 +5,21 @@ import java.sql.SQLException;
 import DatabaseConnection.DatabaseConnection;
 import Logger.Logger;
 
+/**
+ * Data Access Object (DAO) for merchandise management in the gym system.
+ * Handles all database operations related to merchandise including creating,
+ * reading, and calculating inventory values.
+ */
+
 public class MerchDAO {
+
+    /**
+     * Saves a new merchandise item to the database.
+     * Inserts merchandise information including name, description, type, cost, and quantity.
+     * 
+     * @param merch The Merch object containing merchandise details to be saved
+     * @throws Exception if database connection fails or SQL execution encounters an error
+     */
 
     public void saveNewMerchItemToDB(Merch merch) {
 
@@ -29,6 +43,13 @@ public class MerchDAO {
         }
     }
 
+    /**
+     * Retrieves and displays all merchandise items from the database.
+     * Prints a formatted list showing ID, name, type, cost, and quantity for each item.
+     * 
+     * @throws SQLException if database query execution fails
+     */
+
     public void getAllMerchItems() throws SQLException {
         String sql = "SELECT * FROM merch";
         try (var connection = DatabaseConnection.getCon()) {
@@ -45,6 +66,12 @@ public class MerchDAO {
         }
     }
 
+    /**
+     * Calculates the total value of all merchandise in inventory.
+     * Computes the sum of (cost × quantity) for all merchandise items.
+     * 
+     * @return The total monetary value of all merchandise as a double
+     */
     public double getTotalMerchValue() {
         String sql = "SELECT SUM(cost * quantity) AS totalValue FROM merch";
         double totalValue = 0.0;

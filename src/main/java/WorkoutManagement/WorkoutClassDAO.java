@@ -6,7 +6,21 @@ import DatabaseConnection.DatabaseConnection;
 import Logger.Logger;
 import Roles.Trainer;
 
+/**
+ * Data Access Object (DAO) for workout class management in the gym system.
+ * Handles all database operations related to workout classes including creating,
+ * reading, updating, and deleting workout class records with trainer assignments.
+ */
+
 public class WorkoutClassDAO {
+
+    /**
+     * Saves a new workout class to the database with trainer assignment.
+     * Associates the workout class with the specified trainer and logs the operation.
+     * 
+     * @param workoutclass the WorkoutClass object containing class details
+     * @param trainer the Trainer object responsible for conducting this class
+     */
 
     public void saveNewWorkoutClassToDB(WorkoutClass workoutclass, Trainer trainer) {
 
@@ -29,7 +43,15 @@ public class WorkoutClassDAO {
         }
     }
 
-    public void printAllWorkoutClasses() throws SQLException {
+    /**
+     * Retrieves and displays all workout classes from the database.
+     * Shows class ID and description for all available workout classes.
+     * 
+     * @param workoutClass currently unused parameter for future functionality
+     * @throws SQLException if database query execution fails
+     */
+
+    public void printAllWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
         String sql = "SELECT * FROM workoutclass";
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
@@ -43,14 +65,38 @@ public class WorkoutClassDAO {
         }
     }
 
-    // Members & Trainers: View assigned classes
-    public void printAllAssignedWorkoutClasses(int trainerId) throws SQLException {
+    /**
+     * Retrieves and displays workout classes assigned to a specific trainer.
+     * Shows class ID and description for classes assigned to the trainer.
+     * 
+     * @param workoutClass currently unused parameter for future functionality
+     * @throws SQLException if database query execution fails
+     */
+    
+    public void printAllAssignedWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
         String sql = "SELECT * FROM workoutclass WHERE trainerId = ?";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, trainerId);
+            var resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println(" Class ID: " + resultSet.getString("wcId") + " Class Description: " + resultSet.getString("wcDesc"));
+            }
+        }
+    }
+    
+    /**
+     * Retrieves and displays workout classes available to a specific member.
+     * Shows class ID and description for classes accessible by membership.
+     * 
+     * @param workoutClass currently unused parameter for future functionality
+     * @throws SQLException if database query execution fails
+     */
 
+    public void printAllAssignedMemberWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
+        String sql = "SELECT * FROM workoutclass WHERE msId = ?";
+        try (var connection = DatabaseConnection.getCon()) {
+            var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 System.out.println("Class ID: " + resultSet.getString("wcId")
@@ -61,7 +107,14 @@ public class WorkoutClassDAO {
         }
     }
 
-    // Trainer: Update workout class
+    /**
+     * Updates an existing workout class in the database.
+     * Allows trainers to modify workout class type and description.
+     * Provides feedback on operation success or failure.
+     * 
+     * @param workoutClass the WorkoutClass object with updated information
+     */
+
     public void updateWorkoutClass(WorkoutClass workoutClass) {
         String sql = "UPDATE workoutclass SET wcType = ?, wcDesc = ? WHERE wcId = ?";
 
@@ -87,7 +140,14 @@ public class WorkoutClassDAO {
         }
     }
 
-    // Trainer: Delete workout class
+    /**
+     * Deletes a workout class from the database.
+     * Allows trainers to remove workout classes they are responsible for.
+     * Provides feedback on operation success or failure.
+     * 
+     * @param wcId the unique identifier of the workout class to delete
+     */
+
     public void deleteWorkoutClass(String wcId) {
         String sql = "DELETE FROM workoutclass WHERE wcId = ?";
 
