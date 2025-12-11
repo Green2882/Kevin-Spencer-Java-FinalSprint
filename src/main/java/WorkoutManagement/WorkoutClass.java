@@ -8,7 +8,7 @@ package WorkoutManagement;
 
 public class WorkoutClass {
 
-    private String wcId; // WorkoutClass ID
+    private int wcId; // WorkoutClass ID
     private String wcType; // WorkoutClass Type
     private String wcDesc; // WorkoutClass Description
     private int trainerId; //Trainer ID
@@ -22,7 +22,7 @@ public class WorkoutClass {
      * @param trainerId the ID of the trainer assigned to this class
      */
 
-    public WorkoutClass(String wcId, String wcType, String wcDesc, int trainerId) {
+    public WorkoutClass(int wcId, String wcType, String wcDesc, int trainerId) {
         this.wcId = wcId;
         this.wcType = wcType;
         this.wcDesc = wcDesc;
@@ -56,7 +56,7 @@ public class WorkoutClass {
      * @return the unique identifier for this workout class
      */
 
-    public String getWcId() {
+    public int getWcId() {
         return wcId;
     }
 
@@ -66,7 +66,7 @@ public class WorkoutClass {
      * @param wcId the unique identifier to set for this workout class
      */
 
-    public void setWcId(String wcId) {
+    public void setWcId(int wcId) {
         this.wcId = wcId;
     }
 
@@ -116,7 +116,7 @@ public class WorkoutClass {
      * @return the ID of the trainer responsible for this class
      */
 
-    public String getTrainerId() {
+    public int getTrainerId() {
         return trainerId;
     }
 
@@ -126,7 +126,7 @@ public class WorkoutClass {
      * @param trainerId the ID of the trainer to assign to this class
      */
 
-    public void setTrainerId(String trainerId) {
+    public void setTrainerId(int trainerId) {
         this.trainerId = trainerId;
     }
 

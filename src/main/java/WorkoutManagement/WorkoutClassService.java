@@ -60,15 +60,18 @@ public class WorkoutClassService {
         }
     }
 
+
     /**
-     * Displays workout classes assigned to a specific trainer. Shows classes
-     * that the trainer is responsible for conducting. Includes error handling
-     * for improved user experience.
+     * Displays workout classes assigned to a specific trainer.
+     * Shows classes that the trainer is responsible for conducting.
+     * Includes error handling for improved user experience.
+     * 
+     * @param trainer the Trainer object whose assigned classes should be displayed
      */
-    public void viewAllAssignedWorkoutClasses() {
+    public void viewAllAssignedWorkoutClasses(Trainer trainer) {
         try {
             System.out.println("Assigned Workout Classes");
-            workoutDao.printAllAssignedWorkoutClasses(trainer.getTrainerId());
+            workoutDao.printAllAssignedWorkoutClasses(trainer);
             Logger.info("Current workout classes viewed");
         } catch (SQLException e) {
             Logger.error("Error viewing workout classes: " + e.getMessage());
@@ -94,7 +97,8 @@ public class WorkoutClassService {
      *
      * @param wcId the unique identifier of the workout class to delete
      */
-    public void deleteWorkoutClass(String wcId) {
+    
+    public void deleteWorkoutClass(int wcId) {
         System.out.println("Deleting workout class: " + wcId);
         workoutDao.deleteWorkoutClass(wcId);
         Logger.info("Workout class deletion completed for: " + wcId);
