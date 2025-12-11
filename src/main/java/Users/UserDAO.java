@@ -9,9 +9,21 @@ import Roles.Admin;
 import Roles.Member;
 import Roles.Trainer;
 
+/**
+ * The userDAO class allows the program to connect to the users table in pgAdmin
+ * for creating, reading, updating, and deleting data
+ *
+ */
 public class UserDAO {
 
-    // Save a user to db
+    /**
+     * Saves a new User object to the database. The method inserts the user's
+     * username, password, email, phone, address, and role into the users table.
+     * After insertion, the database-generated user ID is retrieved and assigned
+     * back to the User object.
+     *
+     * @param user the User object to be saved to the database
+     */
     public void saveNewUserToDB(User user) {
 
         String sql = "INSERT INTO users (userName, password, email, phone, address, role) VALUES (?, ?, ?, ?, ?, ?)";
@@ -40,7 +52,16 @@ public class UserDAO {
         }
     }
 
-    // Find user by username
+    /**
+     * Retrieves a user from the database based on their username. The method
+     * looks up the user in the users table and returns a User object of the
+     * correct subclass (Admin, Trainer, Member) depending on the user's role.
+     * If no matching username is found, the method returns null.
+     *
+     * @param username the username of the user to retrieve
+     * @return a User object representing the retrieved user, or null if not
+     * found
+     */
     public User getUserByUsername(String username) {
 
         String sql = "SELECT * FROM users WHERE userName = ?";
@@ -130,6 +151,16 @@ public class UserDAO {
         return user;
     }
 
+    /**
+     * Retrieves a user from the database based on their user ID. The method
+     * queries the users table using the provided ID, and returns a User object
+     * of the correct subclass (Admin, Trainer, Member) depending on the user's
+     * role. If no user with the given ID exists, the method returns null.
+     *
+     * @param id the unique ID of the user to retrieve
+     * @return a User object representing the retrieved user, or null if not
+     * found
+     */
     public User getUserById(int id) {
 
         String sql = "SELECT * FROM users WHERE userId = ?";
@@ -216,7 +247,14 @@ public class UserDAO {
         return user;
     }
 
-    // Allow admins to retrieve all users
+    /**
+     * Retrieves all users stored in the database. The method queries the users
+     * table and returns an ArrayList containing User objects for each record
+     * found. This method is typically used by administrators to view all
+     * registered users.
+     *
+     * @return an ArrayList of User objects representing all users in the system
+     */
     public ArrayList<User> getAllUsers() {
 
         String sql = "SELECT * FROM users";
@@ -248,7 +286,15 @@ public class UserDAO {
         return users;
     }
 
-    // Allow admins to delete a user
+    /**
+     * Deletes a user from the database based on their user ID. The method
+     * attempts to remove the user with the specified ID from the users table.
+     * If the deletion is successful, it returns true. If no matching user is
+     * found or an error occurs, it returns false.
+     *
+     * @param id the unique ID of the user to delete
+     * @return true if the user was successfully deleted, false otherwise
+     */
     public boolean deleteUserById(int id) {
 
         String sql = "DELETE FROM users WHERE userId = ?";
