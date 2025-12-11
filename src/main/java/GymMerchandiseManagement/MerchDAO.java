@@ -51,7 +51,7 @@ public class MerchDAO {
      */
 
     public void getAllMerchItems() throws SQLException {
-        String sql = "SELECT * FROM merchandise";
+        String sql = "SELECT * FROM merch";
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();

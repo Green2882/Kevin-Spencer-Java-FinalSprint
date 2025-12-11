@@ -158,7 +158,7 @@ public class demo {
                         merchService.printStockReport();
                         break;
                     case "7":
-                        System.out.println("Print total stock value selected.");
+                        merchService.viewTotalMerchValue();
                         break;
                     case "0":
                         userService.logout(loggedInUser);
@@ -193,7 +193,10 @@ public class demo {
                         System.out.println("Enter workout description: ");
                         String wcDesc = input.nextLine();
 
-                        WorkoutClass newClass = new WorkoutClass(wcType, wcDesc, String.valueOf(loggedInUser.getUserId()));
+                        WorkoutClass newClass = new WorkoutClass();
+                        newClass.setWcType(wcType);
+                        newClass.setWcDesc(wcDesc);
+                        newClass.setTrainerId(((Trainer) loggedInUser).getTrainerId());
 
                         workoutService.saveNewWorkoutClass(newClass, (Trainer) loggedInUser);
                         break;
@@ -208,7 +211,9 @@ public class demo {
                         System.out.println("Enter new class description: ");
                         String newDesc = input.nextLine();
 
-                        WorkoutClass updatedClass = new WorkoutClass(updateId, newType, newDesc, String.valueOf(loggedInUser.getUserId()));
+                        WorkoutClass updatedClass = new WorkoutClass(updateId, newType, newDesc);
+
+                        workoutService.updateWorkoutClass(updatedClass);
 
                         break;
                     case "3":
@@ -218,10 +223,10 @@ public class demo {
                         workoutService.deleteWorkoutClass(deleteId);
                         break;
                     case "4":
-                        System.out.println("View assigned classes.");
+                        workoutService.viewAllAssignedWorkoutClasses((Trainer) loggedInUser);
                         break;
                     case "5":
-                        purchaseMembership(loggedInUser);
+                        purchaseMembership(loggedInUser, input);
                         break;
                     case "6":
                         merchService.viewAllProducts();
@@ -241,9 +246,8 @@ public class demo {
             while (memberRunning) {
                 System.out.println("========== Member Menu ==========");
                 System.out.println("1. Browse workout classes");
-                System.out.println("2. View joined classes");
-                System.out.println("3. Purchase gym membership");
-                System.out.println("4. View all merch");
+                System.out.println("2. Purchase gym membership");
+                System.out.println("3. View all merch");
                 System.out.println("0. Logout");
                 System.out.print("Enter choice: ");
                 String choice = input.nextLine();
@@ -253,12 +257,9 @@ public class demo {
                         workoutService.viewAllWorkoutClasses();
                         break;
                     case "2":
-                        System.out.println("Viewing joined classes...");
+                        purchaseMembership(loggedInUser, input);
                         break;
                     case "3":
-                        purchaseMembership(loggedInUser);
-                        break;
-                    case "4":
                         merchService.viewAllProducts();
                         break;
                     case "0":
@@ -272,9 +273,7 @@ public class demo {
         }
     }
 
-    private static void purchaseMembership(User user) {
-
-        Scanner in = new Scanner(System.in);
+    private static void purchaseMembership(User user, Scanner input) {
         MembershipService membershipService = new MembershipService();
 
         System.out.println("\n=== Purchase Membership ===");
@@ -285,7 +284,7 @@ public class demo {
         System.out.println("3. Yearly");
         System.out.print("Enter choice: ");
 
-        String choice = in.nextLine();
+        String choice = input.nextLine();
         String type = "";
         double cost = 0.0;
         String desc = "";

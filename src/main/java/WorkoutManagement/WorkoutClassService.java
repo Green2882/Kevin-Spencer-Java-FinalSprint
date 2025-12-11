@@ -38,7 +38,7 @@ public class WorkoutClassService {
     public void viewAllWorkoutClasses() {
         try {
             System.out.println("Available Workout Classes");
-            workoutDao.printAllWorkoutClasses(null);
+            workoutDao.printAllWorkoutClasses();
             Logger.info("Workout classes viewed");
         } catch (SQLException e) {
             Logger.error("Error viewing workout classes: " + e.getMessage());
@@ -46,6 +46,7 @@ public class WorkoutClassService {
         }
     }
 
+<<<<<<< HEAD
     /**
      * Displays workout classes available to a specific member.
      * Shows classes accessible based on member's membership level.
@@ -71,9 +72,13 @@ public class WorkoutClassService {
      */
 
     public void viewAllAssignedWorkoutClasses() {
+=======
+    // Members & Trainers: View assigned classes
+    public void viewAllAssignedWorkoutClasses(Trainer trainer) {
+>>>>>>> 3af47ca499f3bb097a52bde52dd5156e7aeab0a8
         try {
-            System.out.println("Available Workout Classes");
-            workoutDao.printAllAssignedWorkoutClasses(null);
+            System.out.println("Assigned Workout Classes");
+            workoutDao.printAllAssignedWorkoutClasses(trainer.getTrainerId());
             Logger.info("Current workout classes viewed");
         } catch (SQLException e) {
             Logger.error("Error viewing workout classes: " + e.getMessage());

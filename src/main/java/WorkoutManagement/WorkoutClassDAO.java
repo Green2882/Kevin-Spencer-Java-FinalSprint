@@ -57,7 +57,10 @@ public class WorkoutClassDAO {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println(" Class ID: " + resultSet.getString("wcId") + " Class Description: " + resultSet.getString("wcDesc"));
+                System.out.println("Class ID: " + resultSet.getString("wcId")
+                        + " | Type: " + resultSet.getString("wcType")
+                        + " | Desc: " + resultSet.getString("wcDesc")
+                        + " | Trainer ID: " + resultSet.getInt("trainerId"));
             }
         }
     }
@@ -72,6 +75,7 @@ public class WorkoutClassDAO {
     
     public void printAllAssignedWorkoutClasses(WorkoutClass workoutClass) throws SQLException {
         String sql = "SELECT * FROM workoutclass WHERE trainerId = ?";
+
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
@@ -95,7 +99,10 @@ public class WorkoutClassDAO {
             var preparedStatement = connection.prepareStatement(sql);
             var resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println(" Class ID: " + resultSet.getString("wcId") + " Class Description: " + resultSet.getString("wcDesc"));
+                System.out.println("Class ID: " + resultSet.getString("wcId")
+                        + " | Type: " + resultSet.getString("wcType")
+                        + " | Desc: " + resultSet.getString("wcDesc")
+                        + " | Trainer ID: " + resultSet.getInt("trainerId"));
             }
         }
     }

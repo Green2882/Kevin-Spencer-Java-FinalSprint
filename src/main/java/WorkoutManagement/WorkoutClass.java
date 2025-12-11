@@ -11,7 +11,7 @@ public class WorkoutClass {
     private String wcId; // WorkoutClass ID
     private String wcType; // WorkoutClass Type
     private String wcDesc; // WorkoutClass Description
-    private String trainerId; //Trainer ID
+    private int trainerId; //Trainer ID
 
     /**
      * Constructs a new WorkoutClass with all specified parameters.
@@ -22,7 +22,7 @@ public class WorkoutClass {
      * @param trainerId the ID of the trainer assigned to this class
      */
 
-    public WorkoutClass(String wcId, String wcType, String wcDesc, String trainerId) {
+    public WorkoutClass(String wcId, String wcType, String wcDesc, int trainerId) {
         this.wcId = wcId;
         this.wcType = wcType;
         this.wcDesc = wcDesc;
@@ -41,7 +41,6 @@ public class WorkoutClass {
     public WorkoutClass(String wcType, String wcDesc, String trainerId) {
         this.wcType = wcType;
         this.wcDesc = wcDesc;
-        this.trainerId = trainerId;
     }
 
     /**
