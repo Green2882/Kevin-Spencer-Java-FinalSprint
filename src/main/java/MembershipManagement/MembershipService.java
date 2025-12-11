@@ -52,4 +52,24 @@ public class MembershipService {
         Logger.info("Membership statistics displayed");
     }
 
+    /**
+     * Displays total membership expenses for a specific member.
+     * Shows the total amount the member has spent on all their memberships.
+     * This operation is available to members to track their spending.
+     * 
+     * @param user the User object representing the member whose expenses to display
+     */
+    public void viewMemberExpenses(User user) {
+        System.out.println("Membership Expenses Report for: " + user.getUserName());
+        double totalExpenses = membershipDao.getMemberTotalExpenses(user.getUserId());
+        
+        if (totalExpenses > 0) {
+            System.out.println("Total Membership Expenses: $" + String.format("%.2f", totalExpenses));
+        } else {
+            System.out.println("No membership expenses found.");
+        }
+        
+        Logger.info("Member expenses displayed for user: " + user.getUserName() + " ($" + totalExpenses + ")");
+    }
+
 }

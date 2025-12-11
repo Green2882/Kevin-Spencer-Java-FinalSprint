@@ -102,4 +102,34 @@ public class MembershipDAO {
         }
     }
 
+    /**
+     * Calculates the total membership expenses for a specific member.
+     * Shows the sum of all membership costs purchased by the specified user.
+     * 
+     * @param userId the ID of the user whose expenses should be calculated
+     * @return the total amount spent by the user on memberships
+     */
+    public double getMemberTotalExpenses(int userId) {
+        String sql = "SELECT SUM(msCost) as total_expenses FROM membership WHERE userId = ?";
+        double totalExpenses = 0.0;
+
+        try (var connection = DatabaseConnection.getCon()) {
+            var preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, userId);
+            var resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                totalExpenses = resultSet.getDouble("total_expenses");
+            }
+
+            Logger.info("Member expenses calculated for user ID " + userId + ": $" + totalExpenses);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Logger.error("Error calculating member expenses: " + e.getMessage());
+        }
+
+        return totalExpenses;
+    }
+
 }
