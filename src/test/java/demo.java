@@ -152,7 +152,14 @@ public class demo {
 
                         break;
                     case "5":
-                        System.out.println("Update merch cost selected.");
+                        System.out.print("Enter merch ID to update cost: ");
+                        int id = Integer.parseInt(input.nextLine());
+
+                        System.out.print("Enter new cost: ");
+                        cost = Double.parseDouble(input.nextLine());
+
+                        merchService.updateMerchCost(id, cost);
+
                         break;
                     case "6":
                         merchService.printStockReport();

@@ -6,22 +6,21 @@ import Logger.Logger;
 import Roles.Trainer;
 
 /**
- * Service layer for workout class management in the gym system.
- * Provides business logic operations for workout class processing including
- * class creation, viewing, updating, and deletion with role-based access control.
+ * Service layer for workout class management in the gym system. Provides
+ * business logic operations for workout class processing including class
+ * creation, viewing, updating, and deletion with role-based access control.
  */
 public class WorkoutClassService {
 
     WorkoutClassDAO workoutDao = new WorkoutClassDAO();
 
     /**
-     * Processes creation of a new workout class for trainers.
-     * Saves the workout class to the database and provides user feedback.
-     * 
+     * Processes creation of a new workout class for trainers. Saves the workout
+     * class to the database and provides user feedback.
+     *
      * @param workoutclass the WorkoutClass object containing class details
      * @param trainer the Trainer object responsible for the class
      */
-
     public void saveNewWorkoutClass(WorkoutClass workoutclass, Trainer trainer) {
         System.out.println("Saving new workout class: " + workoutclass.getWcType());
         workoutDao.saveNewWorkoutClassToDB(workoutclass, trainer);
@@ -30,11 +29,10 @@ public class WorkoutClassService {
     }
 
     /**
-     * Displays all available workout classes for members.
-     * Shows comprehensive listing of all workout classes in the system.
-     * Includes error handling for improved user experience.
+     * Displays all available workout classes for members. Shows comprehensive
+     * listing of all workout classes in the system. Includes error handling for
+     * improved user experience.
      */
-
     public void viewAllWorkoutClasses() {
         try {
             System.out.println("Available Workout Classes");
@@ -46,13 +44,11 @@ public class WorkoutClassService {
         }
     }
 
-<<<<<<< HEAD
     /**
-     * Displays workout classes available to a specific member.
-     * Shows classes accessible based on member's membership level.
-     * Includes error handling for improved user experience.
+     * Displays workout classes available to a specific member. Shows classes
+     * accessible based on member's membership level. Includes error handling
+     * for improved user experience.
      */
-
     public void viewAllAssignedMemberWorkoutClasses() {
         try {
             System.out.println("Available Workout Classes");
@@ -64,18 +60,12 @@ public class WorkoutClassService {
         }
     }
 
-
     /**
-     * Displays workout classes assigned to a specific trainer.
-     * Shows classes that the trainer is responsible for conducting.
-     * Includes error handling for improved user experience.
+     * Displays workout classes assigned to a specific trainer. Shows classes
+     * that the trainer is responsible for conducting. Includes error handling
+     * for improved user experience.
      */
-
     public void viewAllAssignedWorkoutClasses() {
-=======
-    // Members & Trainers: View assigned classes
-    public void viewAllAssignedWorkoutClasses(Trainer trainer) {
->>>>>>> 3af47ca499f3bb097a52bde52dd5156e7aeab0a8
         try {
             System.out.println("Assigned Workout Classes");
             workoutDao.printAllAssignedWorkoutClasses(trainer.getTrainerId());
@@ -87,12 +77,11 @@ public class WorkoutClassService {
     }
 
     /**
-     * Processes workout class updates for trainers.
-     * Allows trainers to modify their assigned workout classes.
-     * 
+     * Processes workout class updates for trainers. Allows trainers to modify
+     * their assigned workout classes.
+     *
      * @param workoutClass the WorkoutClass object with updated information
      */
-
     public void updateWorkoutClass(WorkoutClass workoutClass) {
         System.out.println("Updating workout class: " + workoutClass.getWcId());
         workoutDao.updateWorkoutClass(workoutClass);
@@ -100,12 +89,11 @@ public class WorkoutClassService {
     }
 
     /**
-     * Processes workout class deletion for trainers.
-     * Allows trainers to remove workout classes they are responsible for.
-     * 
+     * Processes workout class deletion for trainers. Allows trainers to remove
+     * workout classes they are responsible for.
+     *
      * @param wcId the unique identifier of the workout class to delete
      */
-    
     public void deleteWorkoutClass(String wcId) {
         System.out.println("Deleting workout class: " + wcId);
         workoutDao.deleteWorkoutClass(wcId);

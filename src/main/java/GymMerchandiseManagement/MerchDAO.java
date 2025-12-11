@@ -10,17 +10,16 @@ import Logger.Logger;
  * Handles all database operations related to merchandise including creating,
  * reading, and calculating inventory values.
  */
-
 public class MerchDAO {
 
     /**
-     * Saves a new merchandise item to the database.
-     * Inserts merchandise information including name, description, type, cost, and quantity.
-     * 
+     * Saves a new merchandise item to the database. Inserts merchandise
+     * information including name, description, type, cost, and quantity.
+     *
      * @param merch The Merch object containing merchandise details to be saved
-     * @throws Exception if database connection fails or SQL execution encounters an error
+     * @throws Exception if database connection fails or SQL execution
+     * encounters an error
      */
-
     public void saveNewMerchItemToDB(Merch merch) {
 
         String sql = "INSERT INTO merch (name, merchdesc, type, cost, quantity) VALUES (?, ?, ?, ?, ?)";
@@ -44,12 +43,11 @@ public class MerchDAO {
     }
 
     /**
-     * Retrieves and displays all merchandise items from the database.
-     * Prints a formatted list showing ID, name, type, cost, and quantity for each item.
-     * 
+     * Retrieves and displays all merchandise items from the database. Prints a
+     * formatted list showing ID, name, type, cost, and quantity for each item.
+     *
      * @throws SQLException if database query execution fails
      */
-
     public void getAllMerchItems() throws SQLException {
         String sql = "SELECT * FROM merch";
         try (var connection = DatabaseConnection.getCon()) {
@@ -67,9 +65,9 @@ public class MerchDAO {
     }
 
     /**
-     * Calculates the total value of all merchandise in inventory.
-     * Computes the sum of (cost × quantity) for all merchandise items.
-     * 
+     * Calculates the total value of all merchandise in inventory. Computes the
+     * sum of (cost × quantity) for all merchandise items.
+     *
      * @return The total monetary value of all merchandise as a double
      */
     public double getTotalMerchValue() {
@@ -90,6 +88,37 @@ public class MerchDAO {
         }
 
         return totalValue;
+    }
+
+    /**
+     * Updates the cost of a merchandise item. Allows admins to change the price
+     * of an existing merch entry.
+     *
+     * @param merchId The ID of the merchandise item to update
+     * @param newCost The new cost value to assign
+     */
+    public void updateMerchCost(int merchId, double newCost) {
+
+        String sql = "UPDATE merch SET cost = ? WHERE merchId = ?";
+
+        try (var connection = DatabaseConnection.getCon()) {
+            var preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDouble(1, newCost);
+            preparedStatement.setInt(2, merchId);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                Logger.info("Updated merch cost for ID: " + merchId);
+                System.out.println("Merch cost updated successfully!");
+            } else {
+                System.out.println("No merch found with that ID.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Logger.error("Error updating merch cost: " + e.getMessage());
+        }
     }
 
 }
