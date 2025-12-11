@@ -100,11 +100,12 @@ public class demo {
                 System.out.println("========== Admin Menu ==========");
                 System.out.println("1. Delete user");
                 System.out.println("2. View all gym memberships");
-                System.out.println("3. View annual revenue");
-                System.out.println("4. Add new merch item");
-                System.out.println("5. Update merch item cost");
-                System.out.println("6. Print merch stock report");
-                System.out.println("7. Print total merch stock value");
+                System.out.println("3: View all users");
+                System.out.println("4. View annual revenue");
+                System.out.println("5. Add new merch item");
+                System.out.println("6. Update merch item cost");
+                System.out.println("7. Print merch stock report");
+                System.out.println("8. Print total merch stock value");
                 System.out.println("0. Logout");
                 System.out.print("Enter choice: ");
                 String choice = input.nextLine();
@@ -127,9 +128,12 @@ public class demo {
                         membershipService.viewAllmemberships();
                         break;
                     case "3":
-                        membershipService.viewTotalRevenue();
+                        userService.getAllUsers();
                         break;
                     case "4":
+                        membershipService.viewTotalRevenue();
+                        break;
+                    case "5":
                         System.out.println("Enter merchandise name: ");
                         String name = input.nextLine();
 
@@ -150,7 +154,7 @@ public class demo {
                         merchService.addNewMerch(merch);
 
                         break;
-                    case "5":
+                    case "6":
                         System.out.print("Enter merch ID to update cost: ");
                         int id = Integer.parseInt(input.nextLine());
 
@@ -160,10 +164,10 @@ public class demo {
                         merchService.updateMerchCost(id, cost);
 
                         break;
-                    case "6":
+                    case "7":
                         merchService.printStockReport();
                         break;
-                    case "7":
+                    case "8":
                         merchService.viewTotalMerchValue();
                         break;
                     case "0":
@@ -256,6 +260,7 @@ public class demo {
                 System.out.println("1. Browse workout classes");
                 System.out.println("2. Purchase gym membership");
                 System.out.println("3. View all merch");
+                System.out.println("4. View current membership costs");
                 System.out.println("0. Logout");
                 System.out.print("Enter choice: ");
                 String choice = input.nextLine();
@@ -269,6 +274,9 @@ public class demo {
                         break;
                     case "3":
                         merchService.viewAllProducts();
+                        break;
+                    case "4":
+
                         break;
                     case "0":
                         userService.logout(loggedInUser);
