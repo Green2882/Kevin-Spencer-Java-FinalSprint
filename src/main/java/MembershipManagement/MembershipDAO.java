@@ -4,7 +4,20 @@ import DatabaseConnection.DatabaseConnection;
 import Logger.Logger;
 import Users.User;
 
+/**
+ * Data Access Object (DAO) for membership management in the gym system.
+ * Handles all database operations related to memberships including creating,
+ * retrieving membership data, and calculating revenue statistics.
+ */
 public class MembershipDAO {
+
+    /**
+     * Saves a new membership to the database.
+     * Associates the membership with the specified user and logs the operation.
+     * 
+     * @param membership the Membership object containing membership details
+     * @param user the User object representing the member purchasing the membership
+     */
 
     public void saveNewMembershipToDB(Membership membership, User user) {
 
@@ -28,7 +41,13 @@ public class MembershipDAO {
         }
     }
 
-    // Admin: Calculate total revenue from memberships
+    /**
+     * Calculates the total revenue generated from all memberships.
+     * This method is typically used by administrators for financial reporting.
+     * 
+     * @return the total revenue from all memberships as a double
+     */
+
     public double getTotalRevenue() {
         String sql = "SELECT SUM(msCost) as total_revenue FROM membership";
         double totalRevenue = 0.0;
@@ -51,7 +70,12 @@ public class MembershipDAO {
         return totalRevenue;
     }
 
-    // Admin: Get all memberships
+    /**
+     * Retrieves and displays all memberships from the database.
+     * Shows comprehensive membership statistics including ID, type, description,
+     * cost, and associated user ID. This method is for administrative use.
+     */
+    
     public void getAllMemberships() {
         String sql = "SELECT * FROM membership";
 

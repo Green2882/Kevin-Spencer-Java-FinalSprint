@@ -2,11 +2,23 @@ package GymMerchandiseManagement;
 
 import Logger.Logger;
 
+/**
+ * Service layer for merchandise management in the gym system.
+ * Provides business logic operations for merchandise including inventory management,
+ * stock reporting, and product viewing with role-based access control.
+ */
+
 public class MerchService {
 
     private MerchDAO merchDAO = new MerchDAO();
 
-    // Admin operations - add new items
+    /**
+     * Adds new merchandise to the inventory (Admin operation).
+     * Saves merchandise to database and logs the operation for audit purposes.
+     * 
+     * @param merch The Merch object containing details of the new merchandise item
+     */
+
     public void addNewMerch(Merch merch) {
         System.out.println("Adding new merchandise: " + merch.getName());
         merchDAO.saveNewMerchItemToDB(merch);
@@ -14,7 +26,12 @@ public class MerchService {
         System.out.println("Merchandise added to inventory!");
     }
 
-    // Print stock report for admins
+    /**
+     * Generates and displays a complete stock report (Admin operation).
+     * Shows all merchandise items with detailed information including quantities.
+     * Includes error handling and logging for audit trails.
+     */
+
     public void printStockReport() {
         try {
             System.out.println("Complete Stock Report");
@@ -26,7 +43,12 @@ public class MerchService {
         }
     }
 
-    // View products (for members and trainers)
+    /**
+     * Displays all available products for viewing (Member and Trainer operation).
+     * Shows product listings without sensitive inventory details.
+     * Includes error handling for improved user experience.
+     */
+
     public void viewAllProducts() {
         try {
             System.out.println("Available Products");
@@ -38,7 +60,12 @@ public class MerchService {
         }
     }
 
-    // View total value of all merch
+    /**
+     * Calculates and displays the total monetary value of all merchandise.
+     * Provides financial reporting for inventory valuation purposes.
+     * Formats the output with proper currency display and logs the operation.
+     */
+
     public void viewTotalMerchValue() {
         System.out.println("Merchandise Stock Value Report");
 
