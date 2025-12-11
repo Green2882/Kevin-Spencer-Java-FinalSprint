@@ -276,7 +276,7 @@ public class demo {
                         merchService.viewAllProducts();
                         break;
                     case "4":
-
+                        membershipService.viewMemberExpenses(loggedInUser);
                         break;
                     case "0":
                         userService.logout(loggedInUser);
