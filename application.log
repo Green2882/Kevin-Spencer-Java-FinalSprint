@@ -114,3 +114,28 @@
 2025-12-11T13:39:25.656948 [INFO] Membership statistics displayed
 2025-12-11T13:39:31.073113 [INFO] Total revenue calculated: $339.98
 2025-12-11T13:39:31.074561 [INFO] Revenue report displayed: $339.98
+2025-12-11T13:50:13.197205 [INFO] User retrieved from DB: user3ad
+2025-12-11T13:50:13.226897 [INFO] User logged in: user3ad
+2025-12-11T13:50:17.450188 [INFO] All memberships retrieved
+2025-12-11T13:50:17.451107 [INFO] Membership statistics displayed
+2025-12-11T13:53:44.179534 [INFO] User retrieved from DB: user3ad
+2025-12-11T13:53:44.206889 [INFO] User logged in: user3ad
+2025-12-11T13:54:00.428539 [INFO] All memberships retrieved
+2025-12-11T13:54:00.429142 [INFO] Membership statistics displayed
+2025-12-11T13:54:04.216001 [INFO] Total revenue calculated: $339.98
+2025-12-11T13:54:04.217833 [INFO] Revenue report displayed: $339.98
+2025-12-11T13:54:16.436844 [INFO] Merchandise saved to database
+2025-12-11T13:54:16.437870 [INFO] New merchandise added: h
+2025-12-11T13:54:30.285459 [INFO] Updated merch cost for ID: 3
+2025-12-11T13:54:36.530144 [INFO] Stock report generated
+2025-12-11T13:54:38.881171 [INFO] Stock value report displayed: $1152.95
+2025-12-11T13:54:41.238968 [INFO] All users retrieved from DB.
+2025-12-11T13:58:04.953270 [INFO] User retrieved from DB: user3ad
+2025-12-11T13:58:04.980885 [INFO] User logged in: user3ad
+2025-12-11T13:58:09.250497 [INFO] All users retrieved from DB.
+2025-12-11T14:00:48.424153 [INFO] User retrieved from DB: user3ad
+2025-12-11T14:00:48.451051 [INFO] User logged in: user3ad
+2025-12-11T14:00:49.745056 [INFO] All users retrieved from DB.
+2025-12-11T14:01:49.994229 [INFO] User retrieved from DB: user3ad
+2025-12-11T14:01:50.020631 [INFO] User logged in: user3ad
+2025-12-11T14:01:52.607522 [INFO] All users retrieved from DB.

@@ -274,6 +274,7 @@ public class UserDAO {
                 user.setRole(resultSet.getString("role"));
 
                 users.add(user);
+                System.out.println("Username: " + user.getUserName() + ", Phone: " + user.getPhone() + ", Email: " + user.getEmail() + ", Address: " + user.getAddress());
             }
 
             Logger.info("All users retrieved from DB.");
