@@ -22,7 +22,7 @@ public class MerchDAO {
      */
     public void saveNewMerchItemToDB(Merch merch) {
 
-        String sql = "INSERT INTO merch (name, merchdesc, type, cost, quantity) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO merch (name, merchdesc, merchtype, cost, quantity) VALUES (?, ?, ?, ?, ?)";
 
         try (var connection = DatabaseConnection.getCon()) {
             var preparedStatement = connection.prepareStatement(sql);
@@ -55,9 +55,9 @@ public class MerchDAO {
             var resultSet = preparedStatement.executeQuery();
             System.out.println("Merchandise Inventory");
             while (resultSet.next()) {
-                System.out.println("ID: " + resultSet.getInt("merchId")
+                System.out.println("ID: " + resultSet.getInt("merchid")
                         + " | Name: " + resultSet.getString("name")
-                        + " | Type: " + resultSet.getString("type")
+                        + " | Type: " + resultSet.getString("merchtype")
                         + " | Cost: $" + resultSet.getDouble("cost")
                         + " | Quantity: " + resultSet.getInt("quantity"));
             }
