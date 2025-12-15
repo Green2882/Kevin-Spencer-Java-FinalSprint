@@ -1,3 +1,8 @@
  - Spencer's Contributions:
 
  - Kevin's Contributions:
+I mainly worked within the roles/users/test folder, but both of us ended up working in all sections 
+at times whenever one of us needed help. As for challenges faced, honestly our biggest problem was 
+not realizing there was a template repo, and when we decided partway through that we should use 
+Maven for dependencies, we had a bit of trouble making the switch. Besides that, there was the 
+odd issue getting the DAO files to work with the service files, but overall it wasn’t too difficult.
