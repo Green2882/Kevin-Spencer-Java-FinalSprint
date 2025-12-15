@@ -1,6 +1,6 @@
 # Preface
 
-We didn't realize that there was a template repo to start from, so we started from scratch.
+We didn't realize that there was a template repo to start from, so we started from scratch. Forgive any minor bugs, but we did quite a bit of testing.
 
 # Gym Management System - User Documentation
 
@@ -100,7 +100,8 @@ java -cp target/gym-app-1.0.0-SNAPSHOT.jar Main
 - View and manage all users
 - Track membership revenue and statistics
 - Add new merchandise (drinks, food, workout gear)
-- Generate stock reports
+- Update merchandise costs and pricing
+- Generate stock reports and inventory valuation
 - Delete users from the system
 
 **Key Operations:**
@@ -108,6 +109,7 @@ java -cp target/gym-app-1.0.0-SNAPSHOT.jar Main
 - User management (view all, delete users)
 - Revenue tracking and reporting
 - Inventory management and reporting
+- Merchandise cost management
 - System administration
 
 ### Trainer
@@ -116,12 +118,24 @@ java -cp target/gym-app-1.0.0-SNAPSHOT.jar Main
 
 - Purchase gym memberships
 - Create, update, and delete workout classes
+- View their assigned workout classes
 - View available merchandise
 - Manage their own workout class schedule
 
 **Key Operations:**
 
 - Workout class CRUD operations
+- View assigned classes and schedules
+- Membership purchases
+- Product browsing
+- View their assigned workout classes
+- View available merchandise
+- Manage their own workout class schedule
+
+**Key Operations:**
+
+- Workout class CRUD operations
+- View assigned classes and schedules
 - Membership purchases
 - Product browsing
 
@@ -132,10 +146,12 @@ java -cp target/gym-app-1.0.0-SNAPSHOT.jar Main
 - Purchase gym memberships
 - View available workout classes
 - Browse gym merchandise
+- View their total membership expenses
 
 **Key Operations:**
 
 - Membership purchases
+- Personal expense tracking
 - Class browsing
 - Product viewing
 
@@ -176,30 +192,41 @@ java -cp target/gym-app-1.0.0-SNAPSHOT.jar Main
 ### UserService Methods
 
 - `saveNewUser(User user)` - Register new user with BCrypt password hashing
-- `userLogIn(String userName, String password)` - Authenticate user
+- `userLogIn(String userName, String password)` - Authenticate user and return User object
 - `getUserByUsername(String username)` - Retrieve user by username
+- `verifyPassword(String plainPassword, String hashedPassword)` - Verify password matches its hashed version
+- `getUserById(int id)` - Find a user by their ID
 - `getAllUsers()` - Get all users (Admin only)
 - `deleteUserById(int id)` - Remove user (Admin only)
-- `isAdmin/isTrainer/isMember(User user)` - Role checking utilities
+- `isAdmin(User user)` - Check if user has admin role
+- `isTrainer(User user)` - Check if user has trainer role
+- `isMember(User user)` - Check if user has member role
+- `usernameExists(String username)` - Check if username is already registered
+- `logout(User user)` - Log out the specified user
 
 ### MembershipService Methods
 
-- `saveNewMembership(Membership membership, User user)` - Purchase membership
-- `viewTotalRevenue()` - Calculate and display total revenue (Admin)
-- `viewMembershipStatistics()` - Show membership analytics (Admin)
+- `saveNewMembership(Membership membership, User user)` - Purchase membership for members/trainers
+- `viewTotalRevenue()` - Calculate and display total revenue from all memberships (Admin)
+- `viewAllmemberships()` - Show comprehensive membership statistics (Admin)
+- `viewMemberExpenses(User user)` - Display total membership expenses for a specific member
 
 ### WorkoutClassService Methods
 
-- `saveNewWorkoutClass(WorkoutClass workoutClass, Trainer trainer)` - Create class
-- `updateWorkoutClass(WorkoutClass workoutClass)` - Modify class (Trainer)
-- `deleteWorkoutClass(String wcId)` - Remove class (Trainer)
-- `viewAllWorkoutClasses()` - List all classes (Member/Trainer)
+- `saveNewWorkoutClass(WorkoutClass workoutClass, Trainer trainer)` - Create new workout class (Trainer)
+- `updateWorkoutClass(WorkoutClass workoutClass)` - Modify existing class details (Trainer)
+- `deleteWorkoutClass(int wcId)` - Remove workout class from system (Trainer)
+- `viewAllWorkoutClasses()` - List all available workout classes (Member/Trainer)
+- `viewAllAssignedWorkoutClasses(Trainer trainer)` - Show classes assigned to specific trainer
+- `viewAllAssignedMemberWorkoutClasses()` - Display workout classes available to members
 
 ### MerchandiseService Methods
 
-- `addNewMerch(item)` - Add inventory (Admin)
-- `printStockReport()` - Generate inventory report (Admin)
-- `viewAllProducts()` - Browse all merchandise (Member/Trainer)
+- `addNewMerch(Merch merch)` - Add new merchandise to inventory (Admin)
+- `printStockReport()` - Generate comprehensive inventory report (Admin)
+- `viewAllProducts()` - Browse all available merchandise (Member/Trainer)
+- `viewTotalMerchValue()` - Calculate and display total monetary value of all merchandise
+- `updateMerchCost(int merchId, double newCost)` - Update the cost of existing merchandise item (Admin)
 
 ## Configuration
 
