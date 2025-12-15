@@ -1,4 +1,19 @@
- - Spencer's Contributions:
+ - Spencer's Contributions: 
+ For this project we each created our own branches, I was working on SpencerBranch.
+
+ Kevin and I worked collabiratively on this project, bouncing ideas and problems off each other throughout the whole process.
+
+ I mainly focused on GymMerchandiseManagement, MembershipManagement and WorkoutManagement
+
+ The biggest challenge faced was swapping to Maven. 
+ We originally were going to use JAR files to access BCrypt, but it wasn't working so we transitioned to Maven.
+ Swapping over proved quite painful. 
+ Downloading dependencies was fine but when we tried to bring them over, whole project nearly imploded.
+ After the better part of a day spent googling and trying different fixes, we finally got it figured out and could start working again.
+
+ Besides Maven and the JAR file debacle, without the template we originally had 3 seperate files in GymMerchandiceManagement.
+ One for Food, Drinks and WorkoutGear which we noticed was going to be a problem down the line of trying to do queries in SQL.
+ So, we merged all of the different files into one and added a type variable to Merch.java to differentiate between types of merch.
 
  - Kevin's Contributions:
 I mainly worked within the roles/users/test folder, but both of us ended up working in all sections 
